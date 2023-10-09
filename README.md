@@ -27,52 +27,6 @@
 </ul>
 <hr>
 <br>
-<h3>How to Use it</h3>
-<p>To start it use <code>./console.py</code></p>
-<p>To use it enter a the desired command on the console</p>
-<h4> Examples<h4>
-
-        <p><strong>Interactive</strong></p>
-        <code>
-        $ ./console.py<br>
-        (hbnb) help<br>
-<br>
-        Documented commands (type help <topic>):<br>
-        ========================================<br>
-        EOF  help  quit<br>
-<br>
-        (hbnb) <br>
-        (hbnb) <br>
-        (hbnb) quit<br>
-        $<br>
-        </code>
-<hr>
-<br>
-
-        <p><strong>Non-nteractive</strong></p>
-        <code>
-        $ echo "help" | ./console.py<br>
-        (hbnb)<br>
-<br>
-        Documented commands (type help <topic>):<br>
-        ========================================<br>
-        EOF  help  quit<br>
-        (hbnb) <br>
-        $<br>
-        $ cat test_help<br>
-        help<br>
-        $<br>
-        $ cat test_help | ./console.py<br>
-        (hbnb)<br>
-
-        Documented commands (type help <topic>):<br>
-        ========================================<br>
-        EOF  help  quit<br>
-        (hbnb) <br>
-        $<br>
-        </code>
-<hr>
-<br>
 
 <h3>Tasks</h3>
 
