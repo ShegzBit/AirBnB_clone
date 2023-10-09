@@ -46,7 +46,7 @@
         (hbnb) <br>
         (hbnb) quit<br>
         $<br>
-        <code></li>
+        </code></li>
 <hr>
 <br>
 
