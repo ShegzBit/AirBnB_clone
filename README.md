@@ -31,10 +31,9 @@
 <p>To start it use <code>./console.py</code></p>
 <p>To use it enter a the desired command on the console</p>
 <h4> Examples<h4>
-<ul>
 
         <p><strong>Interactive</strong></p>
-        <li><code>
+        <code>
         $ ./console.py<br>
         (hbnb) help<br>
 <br>
@@ -46,12 +45,12 @@
         (hbnb) <br>
         (hbnb) quit<br>
         $<br>
-        </code></li>
+        </code>
 <hr>
 <br>
 
         <p><strong>Non-nteractive</strong></p>
-        <li><code>
+        <code>
         $ echo "help" | ./console.py<br>
         (hbnb)<br>
 <br>
@@ -71,8 +70,7 @@
         EOF  help  quit<br>
         (hbnb) <br>
         $<br>
-        </code></li>
-</ul>
+        </code>
 <hr>
 <br>
 
