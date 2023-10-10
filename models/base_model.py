@@ -24,7 +24,9 @@ class BaseModel:
             """
             date_str, time_str = iso_str.split("T")
             date_list = date_str.split("-")
+            time_str, micro_seconds = time_str.split(".")
             time_list = time_str.split(":")
+            time_list.append(micro_seconds)
             date_list.extend(time_list)
             datetime_list = [int(x) for x in date_list]
             return datetime(*datetime_list)
