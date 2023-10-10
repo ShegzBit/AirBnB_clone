@@ -13,12 +13,12 @@ class TestBase(unittest.TestCase):
 
     def test_init(self):
         """test the initialization of the base model"""
-        b_model = BaseModel
-        self.assertIsInstance(b_model, BaseModel)
-        self.assertIsNotNone(b_model.id)
-        self.assertIsNotNone(b_model.created_at)
-        self.assertIsNotNone(b_model.updated_at)
-        self.assertEqual(b_model.created_at, b_model.updated_at)
+        my_model = BaseModel
+        self.assertIsInstance(my_model, BaseModel)
+        self.assertIsNotNone(my_model.id)
+        self.assertIsNotNone(my_model.created_at)
+        self.assertIsNotNone(my_model.updated_at)
+        self.assertEqual(my_model.created_at, my_model.updated_at)
 
 if __name__ == "__main__":
     unittest.main()
