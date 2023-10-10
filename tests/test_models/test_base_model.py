@@ -19,4 +19,7 @@ class TestBase(unittest.TestCase):
         self.assertIsNotNone(model.created_at)
         self.assertIsNotNone(mode.updated_at)
         self.assertEqual(model.created_at, model.updated_at)
+
+if __name__ == "__main__":
+    unittest.main()
     
