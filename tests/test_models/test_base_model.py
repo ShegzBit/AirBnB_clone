@@ -25,13 +25,13 @@ class TestBase(unittest.TestCase):
 
     def test_instance_datetime(self):
         """tests the created at and updated time of the instance """
-        self.assertIsInstance(self.my_model.created_at, datetime.datetime)
-        self.assertIsInstance(self.my_model.updated_at, datetime.datetime)
+        self.assertIsInstance(self.my_model.created_at, datetime)
+        self.assertIsInstance(self.my_model.updated_at, datetime)
 
     def test_str_method(self):
         """test the __str__ method"""
-        my_str = "[BaseModel] ({}) {}]"
-        format(self.my_model.id, self.my_model.__dict__)
+        self.maxDiff = None
+        my_str = f"[BaseModel] ({self.my_model.id}) {self.my_model.__dict__}"
         self.assertEqual(str(self.my_model), my_str)
 
     def test_save_method(self):
@@ -47,9 +47,9 @@ class TestBase(unittest.TestCase):
         self.assertTrue(isinstance(obj_dict, dict))
         self.assertEqual(obj_dict["id"], self.my_model.id)
         self.assertEqual(obj_dict["created_at"],
-                         self.model.created_at.isoformat())
+                         self.my_model.created_at.isoformat())
         self.assertEqual(obj_dict["updated_at"],
-                         self.model.updated_at.isoformat())
+                         self.my_model.updated_at.isoformat())
         self.assertEqual(obj_dict["__class__"], "BaseModel")
 
     def test_init_from_dict(self):
