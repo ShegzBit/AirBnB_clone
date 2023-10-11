@@ -19,7 +19,7 @@ class BaseModel:
         loads an instance from kwargs dictionary
         args is never used
         """
-        def str_to_date(iso_str:str):
+        def str_to_date(iso_str: str):
             """
             converts isoformat str to date
             """
