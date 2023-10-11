@@ -30,7 +30,7 @@ class TestBase(unittest.TestCase):
 
     def test_str_method(self):
         """test the __str__ method"""
-        my_str = "[BaseModel] ({}) {}]"./
+        my_str = "[BaseModel] ({}) {}]"
         format(self.my_model.id, self.my_model.__dict__)
         self.assertEqual(str(self.my_model), my_str)
 
