@@ -24,7 +24,7 @@ class FileStorage:
         """
         sets in __objects the obj with key <obj class name>.id
         """
-        key = "BaseModel." + str(obj.id)
+        key = obj.to_dict()["__class__"] + str(obj.id)
         FileStorage.__object.update({key: obj.to_dict()})
 
     def save(self):
