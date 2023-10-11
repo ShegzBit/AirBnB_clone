@@ -3,7 +3,11 @@
 Basic console for HBNB  frontend usage
 """
 import cmd
-from models.base_model import BaseModel, storage
+import models.base_model
+
+BaseModel = models.base_model.BaseModel
+storage = models.storage
+
 
 
 class HBNBCommand(cmd.Cmd):
