@@ -50,6 +50,5 @@ class FileStorage:
         if not path.exists(filename):
             return
         # opens the file and parses json string into a dictionary
-        with open(filename, "w") as f:
-            json_dict = json.load(f)
-            obj_dict.update(json_dict)
+        with open(filename, "r", encoding="utf-8") as f:
+            FileStorage.__object = json.load(f)
