@@ -87,11 +87,11 @@ class HBNBCommand(cmd.Cmd):
         objects = storage._FileStorage__object
         id_exists = False
         for x, y in objects.items():
-            # If a dictionary has id = args[1]: Create new object instance
-            # and print
+            # If a dictionary has id = args[1] delete it
             if y.get('id') == args[1]:
-                
+                del storage._FileStorage__object[x]
                 id_exists = True
+                break
         if id_exists is False:
             print("** no instance found **")
         
