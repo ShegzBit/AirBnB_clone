@@ -52,4 +52,3 @@ class FileStorage:
         # opens the file and parses json string into a dictionary
         with open(filename, "r", encoding="utf-8") as f:
             FileStorage.__object = json.load(f)
->>>>>>> file-storage
