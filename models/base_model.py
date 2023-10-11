@@ -12,15 +12,38 @@ class BaseModel:
     it contain all neccessary method for smooth operation of each class
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Class constructor for base module
         Init the public instance attribute `id`
+        loads an instance from kwargs dictionary
+        args is never used
         """
+        def str_to_date(iso_str:str):
+            """
+            converts isoformat str to date
+            """
+            date_str, time_str = iso_str.split("T")
+            date_list = date_str.split("-")
+            time_str, micro_seconds = time_str.split(".")
+            time_list = time_str.split(":")
+            time_list.append(micro_seconds)
+            date_list.extend(time_list)
+            datetime_list = [int(x) for x in date_list]
+            return datetime(*datetime_list)
 
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+        # loop through kwargs and set
+        # attribute the attribute is not the id or __class__ or created_at
+        for x, y in kwargs.items():
+            if x not in ("__class__", "created_at", "updated_at"):
+                setattr(self, x, y)
+            elif x in ("created_at", "updated_at"):
+                y = str_to_date(y)
+                setattr(self, x, y)
+        if len(kwargs) == 0:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """
