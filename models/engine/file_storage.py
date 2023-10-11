@@ -3,8 +3,8 @@
 This module contains a file storage system for Base Model and
 it subclasses
 """
-from models.base_model import BaseModel
 import json
+from os import path
 
 
 class FileStorage:
@@ -18,25 +18,38 @@ class FileStorage:
         """
         Returns a dictionary of all objects that has been created
         """
-        return type(self).__object
+        return FileStorage.__object
     
     def new(self, obj):
         """
         sets in __objects the obj with key <obj class name>.id
         """
         key = "BaseModel." + str(obj.id)
-        type(self).__object.update({key: obj.to_dict})
+        FileStorage.__object.update({key: obj.to_dict()})
 
     def save(self):
         """
         serializes __objects to the JSON file (path: __file_path)
         """
-        my_object = type(self).__object
-        filename = my_object.__file_path
+        my_object = FileStorage.__object
+        filename = FileStorage.__file_path
         # write __object to json file
         with open(filename, "w") as f:
             json.dump(my_object, f, indent=2)
-        
+
     def reload(self):
         """
+        deserializes the JSON file to __objects 
+        (only if the JSON file (__file_path) exists ; otherwise, do nothing.
+        If the file doesn’t exist, no exception should be raised)
         """
+
+        filename = FileStorage.__file_path
+        obj_dict = FileStorage.__object
+        # check if file_path exists
+        if not path.exists(filename):
+            return
+        # opens the file and parses json string into a dictionary
+        with open(filename, "w") as f:
+            json_dict = json.load(f)
+            obj_dict.update(json_dict)
