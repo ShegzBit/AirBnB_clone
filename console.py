@@ -96,7 +96,28 @@ class HBNBCommand(cmd.Cmd):
                 break
         if id_exists is False:
             print("** no instance found **")
-        
+    def do_all(self, line=""):
+        """Prints all obj of type passed to all
+"""
+        objects = storage._FileStorage__objects
+        all = []
+        # if line is empty string fetch all
+        if line == "":
+            all = [str(obj) for obj in objects.values()]
+        # else fetch only ones with line the same as their class
+        else:
+            all = [str(obj) for obj in objects.values() if obj.__class__.__name__ == line]
+        print(all)
+    def do_update(self, line=""):
+        """updates the attribute of a class
+"""     
+        attr = []
+        if line == " ":
+            print("** class name missing **")
+            return
+        local_classes = ["BaseModel"]
+        args = line.split()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
