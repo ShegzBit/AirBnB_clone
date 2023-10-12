@@ -6,6 +6,7 @@ from uuid import uuid4
 from datetime import datetime
 import models
 
+
 class BaseModel:
     """
     Base class for all other classes in AirBnB project to inherit from
@@ -19,7 +20,7 @@ class BaseModel:
         loads an instance from kwargs dictionary
         args is never used
         """
-        def str_to_date(iso_str:str):
+        def str_to_date(iso_str: str):
             """
             converts isoformat str to date
             """
@@ -55,7 +56,7 @@ class BaseModel:
         my_dict = self.__dict__
 
         return f'[{class_name}] ({id}) {my_dict}'
-    
+
     def save(self):
         """
         Update the public instance `updated_at` with
@@ -70,7 +71,7 @@ class BaseModel:
         """
 
         new_dict = {}
-        for x,y in self.__dict__.items():
+        for x, y in self.__dict__.items():
             new_dict.update({x: y})
         class_name = __class__.__name__
         created = self.created_at.isoformat()
@@ -80,7 +81,8 @@ class BaseModel:
         new_dict.update({"updated_at": updated})
 
         return new_dict
-    
+
+
 if __name__ == "__main__":
     b1 = BaseModel()
     print(b1)
