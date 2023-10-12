@@ -38,16 +38,10 @@ class TestBase(unittest.TestCase):
 
     def test_save_method(self):
         """tests the save method"""
-<<<<<<< HEAD
         prev_updated_at = self.my_model.updated_at
         time.sleep(1)
         self.my_model.save()
         new_updated_at = self.my_model.updated_at
-=======
-        prev_updated_at = TestBase.my_model.updated_at
-        TestBase.my_model.save()
-        new_updated_at = TestBase.my_model.updated_at
->>>>>>> origin/stage_branch
         self.assertNotEqual(prev_updated_at, new_updated_at)
 
     def test_to_dict_method(self):
@@ -63,7 +57,6 @@ class TestBase(unittest.TestCase):
 
     def test_init_from_dict(self):
         """Test re-creating an instance from a dictionary representation"""
-<<<<<<< HEAD
         self.my_model.name = "My_First_Model"
         self.my_model.my_number = 89
         model_dict = self.my_model.to_dict()
@@ -81,14 +74,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(self.my_model.created_at, new_model.created_at)
         self.assertEqual(self.my_model.updated_at, new_model.updated_at)
         self.assertFalse(self.my_model is new_model)
-=======
-        model_dict = TestBase.my_model.to_dict()
-        new_model = BaseModel(**model_dict)
-
-        self.assertEqual(TestBase.my_model.id, new_model.id)
-        self.assertEqual(TestBase.my_model.created_at, new_model.created_at)
-        self.assertEqual(TestBase.my_model.updated_at, new_model.updated_at)
->>>>>>> origin/stage_branch
 
 
 if __name__ == "__main__":
