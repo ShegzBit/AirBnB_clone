@@ -61,16 +61,14 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-        objects = storage._FileStorage__object
+        objects = storage._FileStorage__objects
         id_exists = False
         for x, y in objects.items():
             # If a dictionary has id = args[1]: Create new object instance
             # and print
-            if y.get('id') == args[1]:
+            if y.id == args[1]:
                 model = self.classes.get(args[0])
-                # recreate instance from it's dictionary of attributes
-                new = model(**y)
-                print(new)
+                print(y)
                 id_exists = True
         if id_exists is False:
             print("** no instance found **")
@@ -88,12 +86,12 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-        objects = storage._FileStorage__object
+        objects = storage._FileStorage__objects
         id_exists = False
         for x, y in objects.items():
             # If a dictionary has id = args[1] delete it
-            if y.get('id') == args[1]:
-                del storage._FileStorage__object[x]
+            if y.id == args[1]:
+                del storage._FileStorage__objects[x]
                 id_exists = True
                 break
         if id_exists is False:
