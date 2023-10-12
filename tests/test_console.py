@@ -6,7 +6,7 @@ import unittest
 from console import HBNBCommand
 from unittest.mock import patch
 from models.base_model import BaseModel
-from io import StringIO
+import io
 
 
 class TestHBNBCommand(unittest.TestCase):
@@ -136,15 +136,33 @@ class TestHBNBCommand(unittest.TestCase):
             console_instance.onecmd("destroy BaseModel 121212")
             mock_print.assert_called_with("** no instance found **")
 
+    def test_destroy_existing_instance(self):
+        """tests the output for the destroy method for an existing
+        instance
+        """
+        console_instance = HBNBCommand()
+        console_prompt = "(hbnb)"
+        with patch('builtins.print') as mock_print:
+            console_instance.onecmd("create BaseModel")
+            output = mock_print.call_args_list[0][0][0]
+
+        mock_print.reset_mock()
+        with patch('builtins.input', return_value=f"yes\n"):
+            console_instance.onecmd(f'destroy BaseModel {output}')
+        
+        with patch('builtins.print') as mock_print:
+            console_instance.onecmd(f"show BaseModel {output}")
+            mock_print.assert_called_with("** no instance found **")
+
     def test_help_destroy(self):
         """tests if the destroy command is documented"""
-        def test_help_show(self):
-        """tests if the show command is documented"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
             HBNBCommand().onecmd("help create")
         msg = 'Deletes an instance based on the class name and id\n'
         self.assertEqual(msg, mock_stdout.getvalue())
 
+    def test_all(self):
+        """tests if the """
 
 
 
