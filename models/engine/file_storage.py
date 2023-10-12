@@ -6,6 +6,7 @@ it subclasses
 import json
 from os import path
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -16,7 +17,7 @@ class FileStorage:
     __objects = {}
     __obj = {}
     __file_path = "file.json"
-    classes = {"BaseModel": BaseModel}
+    classes = {"BaseModel": BaseModel, "User": User}
 
     def all(self):
         """
@@ -39,7 +40,7 @@ class FileStorage:
         filename = FileStorage.__file_path
         # write __objectsect to json file
         new_obj = {x: y.to_dict() for x, y in FileStorage.__objects.items()}
-        with open(filename, "w") as f:
+        with open(filename, "w", encoding="utf-8") as f:
             json.dump(new_obj, f, indent=4)
 
     def reload(self):
