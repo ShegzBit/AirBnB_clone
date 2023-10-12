@@ -3,10 +3,11 @@
 Basic console for HBNB  frontend usage
 """
 import cmd
-import models.base_model
+import models.user
 
-BaseModel = models.base_model.BaseModel
+BaseModel = models.user.BaseModel
 storage = models.storage
+User = models.user.User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -30,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
                 return obj
 
     def preloop(self) -> None:
-        self.classes = {"BaseModel": BaseModel}
+        self.classes = {"BaseModel": BaseModel, "User": User}
         return super().preloop()
 
     def do_quit(self, line):
@@ -57,8 +58,8 @@ class HBNBCommand(cmd.Cmd):
         if line not in self.classes:
             print("** class doesn't exist **")
             return
-        model = self.classes.get(line)
-        obj = model()
+        NewModel = self.classes.get(line)
+        obj = NewModel()
         print(obj.id)
         obj.save()
 
@@ -82,8 +83,7 @@ class HBNBCommand(cmd.Cmd):
         for x, y in objects.items():
             # If a dictionary has id = args[1]: Create new object instance
             # and print
-            if y.id == args[1]:
-                model = self.classes.get(args[0])
+            if y.id == args[1] and y.__class__.__name__ == args[0]:
                 print(y)
                 id_exists = True
         if id_exists is False:
@@ -106,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
         id_exists = False
         for x, y in objects.items():
             # If a dictionary has id = args[1] delete it
-            if y.id == args[1]:
+            if y.id == args[1] and y.__class__.__name__ == args[0]:
                 del storage._FileStorage__objects[x]
                 id_exists = True
                 break
@@ -121,11 +121,12 @@ class HBNBCommand(cmd.Cmd):
         # if line is empty string fetch all
         if line == "":
             all = [str(obj) for obj in objects.values()]
+            line_empty = True
         # else fetch only ones with line the same as their class
         else:
             all = ([str(obj) for obj in objects.values()
                     if obj.__class__.__name__ == line])
-        if all == []:
+        if all == [] and not line_empty:
             print("** class doesn't exist **")
         print(all)
 
@@ -138,10 +139,10 @@ class HBNBCommand(cmd.Cmd):
             return
         # list of available classes
         objects = storage._FileStorage__objects
-        local_classes = ["BaseModel", "User"]
+        # local_classes = ["BaseModel", "User"]
         args = line.split()
         # check for Class in available classes
-        if args[0] not in local_classes:
+        if args[0] not in self.classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:

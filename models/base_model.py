@@ -51,7 +51,7 @@ class BaseModel:
         """
         String representation of BaseModel class
         """
-        class_name = __class__.__name__
+        class_name = self.__class__.__name__
         id = self.id
         my_dict = self.__dict__
 
@@ -73,7 +73,7 @@ class BaseModel:
         new_dict = {}
         for x, y in self.__dict__.items():
             new_dict.update({x: y})
-        class_name = __class__.__name__
+        class_name = self.__class__.__name__
         created = self.created_at.isoformat()
         updated = self.updated_at.isoformat()
         new_dict.update({"__class__": class_name})
@@ -82,7 +82,3 @@ class BaseModel:
 
         return new_dict
 
-
-if __name__ == "__main__":
-    b1 = BaseModel()
-    print(b1)
