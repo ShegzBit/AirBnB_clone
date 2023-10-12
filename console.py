@@ -1,4 +1,4 @@
 #!/usr/bin/python3
 """
-    This module defines the console for AirBnB app
+    test for the console
 """
