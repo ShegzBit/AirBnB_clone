@@ -22,7 +22,7 @@ class TestCity(unittest.TestCase):
         self.assertTrue(hasattr(TestCity.my_city, "name"))
         self.assertTrue(hasattr(TestCity.my_city, "state_id"))
 
-def test_default_attr_values(self):
+    def test_default_attr_values(self):
         """tests the default set attribute values"""
         self.assertEqual(TestCity.my_city.name, "")
         self.assertEqual(TestCity.my_city.state_id, "")
