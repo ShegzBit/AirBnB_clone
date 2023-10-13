@@ -24,10 +24,11 @@ class TestUser(unittest.TestCase):
         """tests if an instance has all attributes
         that makes up a user
         """
-        self.assertTrue(hasattr(TestUser.my_user, "email"))
-        self.assertTrue(hasattr(TestUser.my_user, "password"))
-        self.assertTrue(hasattr(TestUser.my_user, "first_name"))
-        self.assertTrue(hasattr(TestUser.my_user, "last_name"))
+        attributes_to_check = [
+            "email", "password", "first_name", "last_name"
+        ]
+        for attribute in attributes_to_check:
+            self.assertTrue(hasattr(TestUser.my_user, attribute))
 
     def test_user_print(self):
         """tests the format the user is printed in"""
