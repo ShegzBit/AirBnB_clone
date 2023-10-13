@@ -47,7 +47,8 @@ class TestPlace(unittest.TestCase):
             default_val = "" \
                 if isinstance(getattr(TestPlace.my_place, attribute), str) \
                 else 0
-            self.assertEqual(getattr(TestPlace.my_place, attribute), default_val)
+            self.assertEqual(getattr(TestPlace.my_place, attribute),
+                             default_val)
 
 
 if __name__ == "__main__":
