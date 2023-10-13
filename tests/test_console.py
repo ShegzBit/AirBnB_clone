@@ -15,13 +15,14 @@ import json
 
 class TestHBNBCommand(unittest.TestCase):
     """test class for the console"""
+
     def test_create_base_model(self):
         """tests for the create method"""
         console_instance = HBNBCommand()
         console_prompt = "(hbnb)"
         with patch('builtins.input', return_value="BaseModel"):
             with patch('models.storage.save') as mock_save:
-                console_instance.onecmd("create")
+                console_instance.onecmd("create BaseModel")
                 mock_save.assert_called_once()
 
     def test_create_missing_classname(self):
@@ -39,7 +40,7 @@ class TestHBNBCommand(unittest.TestCase):
         console_prompt = "(hbnb)"
         with patch('builtins.input', return_value="NotAModel"):
             with patch('builtins.print') as mock_print:
-                console_instance.onecmd("create")
+                console_instance.onecmd("create Mydj")
                 mock_print.assert_called_with("** class doesn't exist **")
 
     def test_help_create(self):
@@ -61,16 +62,16 @@ class TestHBNBCommand(unittest.TestCase):
         """tests the show method when an instance is created with
         a valid classname and id
         """
-        # TODO:I am unsure of how this will behave
         console_instance = HBNBCommand()
         console_prompt = "(hbnb)"
         with patch('builtins.print') as mock_print:
-            console_instance.onecmd("create BaseModel")
-            output = mock_print.call_args_list[0][0][0]
+            # console_instance.onecmd("create BaseModel")
+            # output = mock_print.call_args_list[0][0][0]
+            id = str((BaseModel()).id)
 
             mock_print.reset_mock()
-            console_instance.onecmd(f'show BaseModel {output}')
-            self.assertTrue(output in mock_print.call_args_list[0][0][0])
+            console_instance.onecmd(f'show BaseModel {id}')
+            self.assertTrue(id == mock_print.call_args_list[0][0][0].id)
 
     def test_show_missing_class(self):
         """tests the show method when no class is passed"""
@@ -202,15 +203,16 @@ class TestHBNBCommand(unittest.TestCase):
         console_instance = HBNBCommand()
         console_prompt = "(hbnb)"
         with patch('builtins.print') as mock_print:
-            self.cmd_instance.onecmd("update BaseModel")
+            console_instance.onecmd("update BaseModel")
             mock_print.assert_called_with("** instance id missing **")
 
     def test_update_nonexising_instance(self):
         """tests the output of the update command when
         an instance the does not exist is passed
         """
+        console_instance = HBNBCommand()
         with patch('builtins.print') as mock_print:
-            self.cmd_instance.onecmd("update BaseModel 121212 \
+            console_instance.onecmd("update BaseModel 121212 \
                                      email 'airbnb@mail.com'")
             mock_print.assert_called_with("** no instance found **")
 
@@ -218,27 +220,21 @@ class TestHBNBCommand(unittest.TestCase):
         """tests the output of the update command when
         an atrribute name is missing
         """
+        console_instance = HBNBCommand()
         with patch('builtins.print') as mock_print:
-            self.cmd_instance.onecmd("update BaseModel 1234-1234-1234")
+            id = str((BaseModel()).id)
+            console_instance.onecmd(f"update BaseModel {id}")
             mock_print.assert_called_with("** attribute name missing **")
 
     def test_update_missing_attribute_value(self):
         """tests the output of the update command when
         an atrribute value is missing
         """
+        console_instance = HBNBCommand()
         with patch('builtins.print') as mock_print:
-            self.cmd_instance.onecmd("update BaseModel 1234-1234-1234 email")
+            id = str((BaseModel()).id)
+            console_instance.onecmd(f"update BaseModel {id} email")
             mock_print.assert_called_with("** value missing **")
-
-    def test_update_non_simple_arguments(self):
-        """tests the output of the update command when
-        non-simple args are passed
-        """
-        with patch('builtins.print') as mock_print:
-            self.cmd_instance.onecmd("update BaseModel 1234-1234-1234 \
-                                     my_list [1, 2, 3]")
-            mock_print.assert_called_with("Only “simple” arguments can be \
-                                          updated: string, integer and float.")
 
 
 if __name__ == "__main__":

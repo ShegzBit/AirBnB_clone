@@ -30,9 +30,9 @@ class HBNBCommand(cmd.Cmd):
             except ValueError:
                 return obj
 
-    def preloop(self) -> None:
+    def __init__(self):
+        cmd.Cmd.__init__(self)
         self.classes = {"BaseModel": BaseModel, "User": User}
-        return super().preloop()
 
     def do_quit(self, line):
         """Quit command to exit the program
@@ -58,6 +58,7 @@ class HBNBCommand(cmd.Cmd):
         if line not in self.classes:
             print("** class doesn't exist **")
             return
+        # line = "User"
         NewModel = self.classes.get(line)
         obj = NewModel()
         print(obj.id)
@@ -129,6 +130,7 @@ class HBNBCommand(cmd.Cmd):
                     if obj.__class__.__name__ == line])
         if all == [] and not line_empty:
             print("** class doesn't exist **")
+            return
         print(all)
 
     def do_update(self, line=""):

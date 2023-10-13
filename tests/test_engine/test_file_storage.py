@@ -7,6 +7,7 @@ from models import storage
 from models.base_model import BaseModel
 from unittest.mock import patch
 from models.engine.file_storage import FileStorage
+import io
 
 
 class TestFileStorage(unittest.TestCase):
