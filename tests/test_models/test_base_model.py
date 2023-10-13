@@ -1,4 +1,4 @@
-#!/c/Users/maham/AppData/Local/Microsoft/WindowsApps/python
+#!/usr/bin/python3
 """
     Tests for the base class
 """
@@ -12,9 +12,7 @@ import time
 
 class TestBase(unittest.TestCase):
     """test class for the base class"""
-    def setUp(self):
-        """set up test methods"""
-        self.my_model = BaseModel()
+    my_model = BaseModel()
 
     def test_instance_attributes(self):
         """test attriutes of the created instance of the base class"""
