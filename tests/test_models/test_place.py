@@ -36,6 +36,19 @@ class TestPlace(unittest.TestCase):
             "{}".format(TestPlace.my_place.__dict__)
         )
 
+    def test_default_attr_values(self):
+        """tests the default set attribute values"""
+        attributes_to_check = [
+            "name", "city_id", "user_id", "description",
+            "number_rooms", "number_bathrooms", "max_guest",
+            "price_by_night", "latitude", "longitude", "amenity_ids"
+        ]
+        for attribute in attributes_to_check:
+            default_val = "" \
+                if isinstance(getattr(TestPlace.my_place, attribute), str) \
+                else 0
+            self.assertEqual(getattr(TestPlace.my_place, attribute), default_val)
+
 
 if __name__ == "__main__":
     unittest.main()

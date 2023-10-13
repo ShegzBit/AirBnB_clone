@@ -21,6 +21,10 @@ class TestState(unittest.TestCase):
         """
         self.assertTrue(hasattr(TestState.my_state, "name"))
 
+    def test_default_attr_values(self):
+        """tests the default set attribute values"""
+        self.assertEqual(TestState.my_state.name, "")
+
     def test_state_print(self):
         """tests the format the state is printed in"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
