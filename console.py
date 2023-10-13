@@ -207,111 +207,32 @@ class HBNBCommand(cmd.Cmd):
     # --------------Targetted <class_name>.method handlers-----------
 
     # ------User handler methods----------
-    def do_User(self, line=""):
-        if line == "":
-            return
-        args = line.split('.')
-        if len(args) == 1 and args[0] == line:
-            return
-        class_name = "User"
-        # split parenthesis from command
-        method = args[1].split('(')
-        if len(method) == 1 and method[0] == args[1]:
-            return
-        for name, command in self.commands.items():
-            if name == method[0]:
-                command(class_name)
     
-    def do_BaseModel(self, line=""):
+    def default(self, line=""):
+        """Default"""
+        # line = User.all()
         if line == "":
             return
         args = line.split('.')
+
+        if args[0] not in (["User", "BaseModel", "Amenity", "City", 
+                "Place", "Review", "State"]):
+            print(f'*** Unknown syntax: {args[0]}')
+            return
+
+        # args[0] = "User"
+        # args[1] = "all()"
         if len(args) == 1 and args[0] == line:
             return
-        class_name = "BaseModel"
-        # split parenthesis from command
+        
         method = args[1].split('(')
+        # method[0] = "all"
+        # method[1] = ")"
         if len(method) == 1 and method[0] == args[1]:
             return
-        for name, command in self.commands.items():
-            if name == method[0]:
-                command(class_name)
-    
-    def do_Amenity(self, line=""):
-        if line == "":
-            return
-        args = line.split('.')
-        if len(args) == 1 and args[0] == line:
-            return
-        class_name = "Amenity"
-        # split parenthesis from command
-        method = args[1].split('(')
-        if len(method) == 1 and method[0] == args[1]:
-            return
-        for name, command in self.commands.items():
-            if name == method[0]:
-                command(class_name)
-    
-    def do_City(self, line=""):
-        if line == "":
-            return
-        args = line.split('.')
-        if len(args) == 1 and args[0] == line:
-            return
-        class_name = "City"
-        # split parenthesis from command
-        method = args[1].split('(')
-        if len(method) == 1 and method[0] == args[1]:
-            return
-        for name, command in self.commands.items():
-            if name == method[0]:
-                command(class_name)
-    
-    def do_Place(self, line=""):
-        if line == "":
-            return
-        args = line.split('.')
-        if len(args) == 1 and args[0] == line:
-            return
-        class_name = "Place"
-        # split parenthesis from command
-        method = args[1].split('(')
-        if len(method) == 1 and method[0] == args[1]:
-            return
-        for name, command in self.commands.items():
-            if name == method[0]:
-                command(class_name)
-    
-    def do_Review(self, line=""):
-        if line == "":
-            return
-        args = line.split('.')
-        if len(args) == 1 and args[0] == line:
-            return
-        class_name = "Review"
-        # split parenthesis from command
-        method = args[1].split('(')
-        if len(method) == 1 and method[0] == args[1]:
-            return
-        for name, command in self.commands.items():
-            if name == method[0]:
-                command(class_name)
-    
-    def do_State(self, line=""):
-        if line == "":
-            return
-        args = line.split('.')
-        if len(args) == 1 and args[0] == line:
-            return
-        class_name = "State"
-        commands = {"all": self.handle_all}
-        # split parenthesis from command
-        method = args[1].split('(')
-        if len(method) == 1 and method[0] == args[1]:
-            return
-        for name, command in self.commands.items():
-            if name == method[0]:
-                command(class_name)
+        for x, y in self.commands.items():
+            if method[0] == x:
+                y(args[0])
 
 
 if __name__ == '__main__':
