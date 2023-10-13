@@ -4,10 +4,20 @@ Basic console for HBNB  frontend usage
 """
 import cmd
 import models.user
+import models.state
+import models.city
+import models.place
+import models.amenity
+import models.review
 
 BaseModel = models.user.BaseModel
 storage = models.storage
 User = models.user.User
+State = models.state.State
+City = models.city.City
+Place = models.place.Place
+Amenity = models.amenity.Amenity
+Review = models.review.Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -31,7 +41,10 @@ class HBNBCommand(cmd.Cmd):
                 return obj
 
     def preloop(self) -> None:
-        self.classes = {"BaseModel": BaseModel, "User": User}
+        self.classes = ({"BaseModel": BaseModel, "User": User, "State": State,
+                "City": City, "Place": Place, "Amenity": Amenity, "Review": Review})
+        self.commands = {"all": self.handle_all}
+        
         return super().preloop()
 
     def do_quit(self, line):
@@ -119,6 +132,7 @@ class HBNBCommand(cmd.Cmd):
         objects = storage._FileStorage__objects
         all = []
         # if line is empty string fetch all
+        line_empty = False
         if line == "":
             all = [str(obj) for obj in objects.values()]
             line_empty = True
@@ -126,8 +140,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             all = ([str(obj) for obj in objects.values()
                     if obj.__class__.__name__ == line])
-        if all == [] and not line_empty:
+            line_empty = True
+        if line != "" and line not in self.classes:
             print("** class doesn't exist **")
+            return
         print(all)
 
     def do_update(self, line=""):
@@ -176,6 +192,126 @@ class HBNBCommand(cmd.Cmd):
         attr_1 = HBNBCommand.to_numeral(attr[1])
         setattr(main_object, attr[0], attr_1)
         storage.save()
+
+    # ---------------<class_name> handler methods--------------------
+
+    def handle_all(self, class_name):
+        """Handles <classname>.all"""
+        objects = storage._FileStorage__objects
+        all = ([obj for obj in objects.values()
+                    if obj.__class__.__name__ == class_name])
+        print(all)
+
+    # ---------------Static handler methods--------------------
+
+    # --------------Targetted <class_name>.method handlers-----------
+
+    # ------User handler methods----------
+    def do_User(self, line=""):
+        if line == "":
+            return
+        args = line.split('.')
+        if len(args) == 1 and args[0] == line:
+            return
+        class_name = "User"
+        # split parenthesis from command
+        method = args[1].split('(')
+        if len(method) == 1 and method[0] == args[1]:
+            return
+        for name, command in self.commands.items():
+            if name == method[0]:
+                command(class_name)
+    
+    def do_BaseModel(self, line=""):
+        if line == "":
+            return
+        args = line.split('.')
+        if len(args) == 1 and args[0] == line:
+            return
+        class_name = "BaseModel"
+        # split parenthesis from command
+        method = args[1].split('(')
+        if len(method) == 1 and method[0] == args[1]:
+            return
+        for name, command in self.commands.items():
+            if name == method[0]:
+                command(class_name)
+    
+    def do_Amenity(self, line=""):
+        if line == "":
+            return
+        args = line.split('.')
+        if len(args) == 1 and args[0] == line:
+            return
+        class_name = "Amenity"
+        # split parenthesis from command
+        method = args[1].split('(')
+        if len(method) == 1 and method[0] == args[1]:
+            return
+        for name, command in self.commands.items():
+            if name == method[0]:
+                command(class_name)
+    
+    def do_City(self, line=""):
+        if line == "":
+            return
+        args = line.split('.')
+        if len(args) == 1 and args[0] == line:
+            return
+        class_name = "City"
+        # split parenthesis from command
+        method = args[1].split('(')
+        if len(method) == 1 and method[0] == args[1]:
+            return
+        for name, command in self.commands.items():
+            if name == method[0]:
+                command(class_name)
+    
+    def do_Place(self, line=""):
+        if line == "":
+            return
+        args = line.split('.')
+        if len(args) == 1 and args[0] == line:
+            return
+        class_name = "Place"
+        # split parenthesis from command
+        method = args[1].split('(')
+        if len(method) == 1 and method[0] == args[1]:
+            return
+        for name, command in self.commands.items():
+            if name == method[0]:
+                command(class_name)
+    
+    def do_Review(self, line=""):
+        if line == "":
+            return
+        args = line.split('.')
+        if len(args) == 1 and args[0] == line:
+            return
+        class_name = "Review"
+        # split parenthesis from command
+        method = args[1].split('(')
+        if len(method) == 1 and method[0] == args[1]:
+            return
+        for name, command in self.commands.items():
+            if name == method[0]:
+                command(class_name)
+    
+    def do_State(self, line=""):
+        if line == "":
+            return
+        args = line.split('.')
+        if len(args) == 1 and args[0] == line:
+            return
+        class_name = "State"
+        commands = {"all": self.handle_all}
+        # split parenthesis from command
+        method = args[1].split('(')
+        if len(method) == 1 and method[0] == args[1]:
+            return
+        for name, command in self.commands.items():
+            if name == method[0]:
+                command(class_name)
 
 
 if __name__ == '__main__':

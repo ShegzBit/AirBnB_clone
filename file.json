@@ -1,63 +1,76 @@
 {
-    "BaseModel.2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4": {
-        "id": "2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4",
-        "updated_at": "2017-09-28T21:11:14.333862",
-        "created_at": "2017-09-28T21:11:14.333852",
-        "__class__": "BaseModel"
+    "Review.78c5cbe4-40d0-408d-8027-bf7583243e1e": {
+        "id": "78c5cbe4-40d0-408d-8027-bf7583243e1e",
+        "created_at": "2023-10-13T03:13:03.258342",
+        "updated_at": "2023-10-13T03:13:03.258536",
+        "name": "Gabriel",
+        "__class__": "Review"
     },
-    "BaseModel.a42ee380-c959-450e-ad29-c840a898cfce": {
-        "id": "a42ee380-c959-450e-ad29-c840a898cfce",
-        "updated_at": "2017-09-28T21:11:15.504296",
-        "created_at": "2017-09-28T21:11:15.504287",
-        "__class__": "BaseModel"
+    "Place.4a5b67b9-73fd-4ad9-9a88-32d555b56d75": {
+        "id": "4a5b67b9-73fd-4ad9-9a88-32d555b56d75",
+        "created_at": "2023-10-13T03:14:18.147193",
+        "updated_at": "2023-10-13T03:14:18.147327",
+        "__class__": "Place"
     },
-    "BaseModel.af9b4cbd-2ce1-4e6e-8259-f578097dd15f": {
-        "id": "af9b4cbd-2ce1-4e6e-8259-f578097dd15f",
-        "updated_at": "2017-09-28T21:11:12.971544",
-        "created_at": "2017-09-28T21:11:12.971521",
-        "__class__": "BaseModel"
+    "State.e2c496d0-5965-446a-97ec-8c3b5ad6c7ce": {
+        "id": "e2c496d0-5965-446a-97ec-8c3b5ad6c7ce",
+        "created_at": "2023-10-13T03:21:49.597378",
+        "updated_at": "2023-10-13T03:21:49.597529",
+        "name": "Lagos",
+        "__class__": "State"
     },
-    "BaseModel.38a22b25-ae9c-4fa9-9f94-59b3eb51bfba": {
-        "id": "38a22b25-ae9c-4fa9-9f94-59b3eb51bfba",
-        "updated_at": "2017-09-28T21:11:13.753347",
-        "created_at": "2017-09-28T21:11:13.753337",
-        "__class__": "BaseModel"
+    "State.21b4c594-622f-4f22-a55e-1f38c76023e2": {
+        "id": "21b4c594-622f-4f22-a55e-1f38c76023e2",
+        "created_at": "2023-10-13T03:22:48.124897",
+        "updated_at": "2023-10-13T03:22:48.125036",
+        "__class__": "State"
     },
-    "BaseModel.9bf17966-b092-4996-bd33-26a5353cccb4": {
-        "id": "9bf17966-b092-4996-bd33-26a5353cccb4",
-        "updated_at": "2017-09-28T21:11:14.963058",
-        "created_at": "2017-09-28T21:11:14.963049",
-        "__class__": "BaseModel"
+    "State.3bfa62c3-64d6-46de-b62e-eb9085959b1f": {
+        "id": "3bfa62c3-64d6-46de-b62e-eb9085959b1f",
+        "created_at": "2023-10-13T03:23:01.223992",
+        "updated_at": "2023-10-13T03:23:01.224101",
+        "__class__": "State"
     },
-    "User.c65e7311-4b8f-4c14-927a-3309a1aea68d": {
-        "id": "c65e7311-4b8f-4c14-927a-3309a1aea68d",
-        "created_at": "2023-10-12T21:02:15.255467",
-        "updated_at": "2023-10-12T21:02:15.255535",
-        "first_name": "Betty",
-        "last_name": "Bar",
-        "email": "airbnb@mail.com",
-        "password": "root",
+    "User.a08c3042-c86e-4164-8c45-a8d5cec30aa7": {
+        "id": "a08c3042-c86e-4164-8c45-a8d5cec30aa7",
+        "created_at": "2023-10-13T10:18:15.979489",
+        "updated_at": "2023-10-13T10:18:15.979802",
         "__class__": "User"
     },
-    "User.7af9e152-5ee1-41f1-8a03-558762771ca8": {
-        "id": "7af9e152-5ee1-41f1-8a03-558762771ca8",
-        "created_at": "2023-10-12T21:02:15.255946",
-        "updated_at": "2023-10-12T21:02:15.255979",
-        "first_name": "John",
-        "email": "airbnb2@mail.com",
-        "password": "root",
-        "__class__": "User"
+    "Review.435995f1-be6e-4ef3-9770-3b9f646db028": {
+        "id": "435995f1-be6e-4ef3-9770-3b9f646db028",
+        "created_at": "2023-10-13T10:32:17.402911",
+        "updated_at": "2023-10-13T10:32:17.403036",
+        "__class__": "Review"
     },
-    "User.49257ec9-5c69-4a5c-9ad8-343eb4a2cc49": {
-        "id": "49257ec9-5c69-4a5c-9ad8-343eb4a2cc49",
-        "created_at": "2023-10-12T21:35:26.897878",
-        "updated_at": "2023-10-12T21:35:26.898010",
-        "__class__": "User"
+    "Review.c7404b44-d283-4050-b4d2-10c60f7aa07a": {
+        "id": "c7404b44-d283-4050-b4d2-10c60f7aa07a",
+        "created_at": "2023-10-13T10:32:22.314422",
+        "updated_at": "2023-10-13T10:32:22.314529",
+        "__class__": "Review"
     },
-    "BaseModel.97367fe2-25a1-4c14-92cf-6b1f9aae9924": {
-        "id": "97367fe2-25a1-4c14-92cf-6b1f9aae9924",
-        "created_at": "2023-10-12T22:02:34.205994",
-        "updated_at": "2023-10-12T22:02:34.207664",
+    "Review.758feb00-b163-4833-a114-18f1612df994": {
+        "id": "758feb00-b163-4833-a114-18f1612df994",
+        "created_at": "2023-10-13T10:32:24.756487",
+        "updated_at": "2023-10-13T10:32:24.756591",
+        "__class__": "Review"
+    },
+    "Amenity.2cb156e5-698a-472f-8ada-ed98b2bb0bab": {
+        "id": "2cb156e5-698a-472f-8ada-ed98b2bb0bab",
+        "created_at": "2023-10-13T10:38:07.932669",
+        "updated_at": "2023-10-13T10:38:07.932805",
+        "__class__": "Amenity"
+    },
+    "BaseModel.c756dceb-927b-477a-b18f-e1eaf9542d1a": {
+        "id": "c756dceb-927b-477a-b18f-e1eaf9542d1a",
+        "created_at": "2023-10-13T10:38:39.049156",
+        "updated_at": "2023-10-13T10:38:39.049260",
         "__class__": "BaseModel"
+    },
+    "City.a9db9d78-44ce-4061-a236-c6337bc92ec0": {
+        "id": "a9db9d78-44ce-4061-a236-c6337bc92ec0",
+        "created_at": "2023-10-13T10:38:53.447127",
+        "updated_at": "2023-10-13T10:38:53.447255",
+        "__class__": "City"
     }
 }
