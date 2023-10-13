@@ -33,7 +33,8 @@ class TestBase(unittest.TestCase):
     def test_str_method(self):
         """test the __str__ method"""
         self.maxDiff = None
-        my_str = f"[BaseModel] ({TestBase.my_model.id}) {TestBase.my_model.__dict__}"
+        my_str = "[BaseModel] ({}) {}". \
+            format(TestBase.my_model.id, TestBase.my_model.__dict__)
         self.assertEqual(str(TestBase.my_model), my_str)
 
     def test_save_method(self):
@@ -67,7 +68,6 @@ class TestBase(unittest.TestCase):
             "[BaseModel] ({}) ".format(new_model.id) +
             "{}".format(new_model.__dict__)
         )
-
 
         self.assertEqual(mock_stdout.getvalue().strip(), expected_output)
         self.assertEqual(self.my_model.id, new_model.id)
