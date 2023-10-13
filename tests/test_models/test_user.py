@@ -30,7 +30,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(TestUser.my_user, "last_name"))
 
     def test_user_print(self):
-        """tests the format the user is printed in""" 
+        """tests the format the user is printed in"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
             print(TestUser.my_user)
         expected_output = (

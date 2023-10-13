@@ -10,6 +10,7 @@ from models import storage
 from unittest.mock import patch
 import io
 
+
 class TestState(unittest.TestCase):
     """Test class the State class"""
     my_state = State()
@@ -21,7 +22,7 @@ class TestState(unittest.TestCase):
         self.assertTrue(hasattr(TestState.my_state, "name"))
 
     def test_state_print(self):
-        """tests the format the state is printed in""" 
+        """tests the format the state is printed in"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
             print(TestState.my_state)
         expected_output = (
