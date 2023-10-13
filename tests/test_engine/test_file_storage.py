@@ -15,7 +15,7 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """set up test methods"""
         self.my_model = BaseModel()
-    
+
     def test_all(self):
         """test the all method"""
         all_objs = storage.all()
@@ -24,7 +24,7 @@ class TestFileStorage(unittest.TestCase):
                 obj = all_objs[obj_id]
                 print(obj)
         expected_output = ()
-    
+
     def test_save(self):
         """test updated save method"""
         self.my_model.name = "My_First_Model"
