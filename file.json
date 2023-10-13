@@ -59,5 +59,46 @@
         "created_at": "2023-10-12T22:02:34.205994",
         "updated_at": "2023-10-12T22:02:34.207664",
         "__class__": "BaseModel"
+    },
+    "BaseModel.86bb2e0d-8bc4-4196-9f3c-829a4aa7b014": {
+        "id": "86bb2e0d-8bc4-4196-9f3c-829a4aa7b014",
+        "created_at": "2023-10-14T00:42:32.112471",
+        "updated_at": "2023-10-14T00:42:32.112697",
+        "name": "My First Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
+    },
+    "User.e9a40ab2-9541-47a6-ac4f-d4b55eed53d1": {
+        "id": "e9a40ab2-9541-47a6-ac4f-d4b55eed53d1",
+        "created_at": "2023-10-14T00:42:45.502125",
+        "updated_at": "2023-10-14T00:42:45.502216",
+        "first_name": "Betty",
+        "last_name": "Bar",
+        "email": "airbnb@mail.com",
+        "password": "root",
+        "__class__": "User"
+    },
+    "User.559069bb-1328-4871-a685-e59b5f96568d": {
+        "id": "559069bb-1328-4871-a685-e59b5f96568d",
+        "created_at": "2023-10-14T00:42:45.502944",
+        "updated_at": "2023-10-14T00:42:45.502978",
+        "first_name": "John",
+        "email": "airbnb2@mail.com",
+        "password": "root",
+        "__class__": "User"
+    },
+    "BaseModel.aa05211a-6044-4fd3-bd65-edaad999f29d": {
+        "id": "aa05211a-6044-4fd3-bd65-edaad999f29d",
+        "created_at": "2023-10-14T00:42:52.068005",
+        "updated_at": "2023-10-14T00:42:52.068087",
+        "name": "My_First_Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
+    },
+    "BaseModel.ae5e984c-db80-454c-9f8a-567c146e0f71": {
+        "id": "ae5e984c-db80-454c-9f8a-567c146e0f71",
+        "created_at": "2023-10-14T00:43:41.374209",
+        "updated_at": "2023-10-14T00:43:41.375626",
+        "__class__": "BaseModel"
     }
 }
