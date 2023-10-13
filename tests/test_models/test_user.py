@@ -7,6 +7,9 @@ from models.base_model import BaseModel
 import unittest
 from models.engine.file_storage import FileStorage
 from models import storage
+from unittest.mock import patch
+import io
+
 
 class TestUser(unittest.TestCase):
     """test class for the User class"""
@@ -27,7 +30,13 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(TestUser.my_user, "last_name"))
 
     def test_user_print(self):
-        """tests the format the user is printed in"""   
+        """tests the format the user is printed in""" 
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            print(TestUser.my_user)
+        expected_output = (
+            "[User] ({}) ".format(TestUser.my_user.id) +
+            "{}".format(TestUser.my_user.__dict__)
+        )
 
 
 if __name__ == "__main__":
