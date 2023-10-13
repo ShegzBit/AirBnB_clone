@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
     def preloop(self) -> None:
         self.classes = ({"BaseModel": BaseModel, "User": User, "State": State,
                 "City": City, "Place": Place, "Amenity": Amenity, "Review": Review})
-        self.commands = {"all": self.handle_all}
+        self.commands = {"all": self.handle_all, "count":self.handle_count}
         
         return super().preloop()
 
@@ -196,17 +196,28 @@ class HBNBCommand(cmd.Cmd):
     # ---------------<class_name> handler methods--------------------
 
     def handle_all(self, class_name):
-        """Handles <classname>.all"""
+        """Handles <classname>.all()"""
         objects = storage._FileStorage__objects
         all = ([obj for obj in objects.values()
                     if obj.__class__.__name__ == class_name])
         print(all)
 
-    # ---------------Static handler methods--------------------
+    def handle_count(self, class_name):
+        """Handles <classname>.count()"""
+        objects = storage._FileStorage__objects
+        all = ([obj for obj in objects.values()
+                    if obj.__class__.__name__ == class_name])
+        print(len(all))
 
-    # --------------Targetted <class_name>.method handlers-----------
+    def handle_count(self, class_name):
+        """Handles <classname>.all"""
+        objects = storage._FileStorage__objects
+        for obj in objects.values():
+            obj_class = obj.__class__.__name__
+            if obj._class == class_name:
+        print(len(all))
 
-    # ------User handler methods----------
+    # ------------<class_name> handler-------------------------------
     
     def default(self, line=""):
         """Default"""
