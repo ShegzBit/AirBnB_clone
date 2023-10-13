@@ -9,6 +9,7 @@ import models.city
 import models.place
 import models.amenity
 import models.review
+import sys
 
 BaseModel = models.user.BaseModel
 storage = models.storage
@@ -43,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
     def preloop(self) -> None:
         self.classes = ({"BaseModel": BaseModel, "User": User, "State": State,
                 "City": City, "Place": Place, "Amenity": Amenity, "Review": Review})
-        self.commands = {"all": self.handle_all, "count":self.handle_count}
+        self.commands = {"all": self.handle_all, "count":self.handle_count, "show":self.handle_show, "destroy": self.handle_destroy}
         
         return super().preloop()
 
@@ -60,6 +61,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """cleanly exits command line interface on EOF signal (on `ctrl + D`)
 """
+        print()
         exit(0)
 
     def do_create(self, line=""):
@@ -195,33 +197,60 @@ class HBNBCommand(cmd.Cmd):
 
     # ---------------<class_name> handler methods--------------------
 
-    def handle_all(self, class_name):
+    def handle_all(self, class_name, id=''):
         """Handles <classname>.all()"""
         objects = storage._FileStorage__objects
         all = ([obj for obj in objects.values()
                     if obj.__class__.__name__ == class_name])
         print(all)
 
-    def handle_count(self, class_name):
+    def handle_count(self, class_name, id=''):
         """Handles <classname>.count()"""
         objects = storage._FileStorage__objects
         all = ([obj for obj in objects.values()
                     if obj.__class__.__name__ == class_name])
         print(len(all))
 
-    def handle_count(self, class_name):
+    def handle_show(self, class_name, id=''):
         """Handles <classname>.all"""
         objects = storage._FileStorage__objects
+        # handle for no id passed
+        if id == '':
+            print("** instance id missing **")
+            return
+        # loop through the objects to find instance
         for obj in objects.values():
             obj_class = obj.__class__.__name__
-            if obj._class == class_name:
-        print(len(all))
+            if obj_class == class_name and id == str(obj.id):
+                print(obj)
+                return
+        # issue instance not found error if function still runs
+        print("** no instance found **")
+
+    def handle_destroy(self, class_name, id=''):
+        """Handles <classname>.show"""
+        objects = storage._FileStorage__objects
+        # handle for no id passed
+        if id == '':
+            print("** instance id missing **")
+            return
+        # loop through the objects to find instance
+        for name, obj in objects.items():
+            obj_class = obj.__class__.__name__
+            if obj_class == class_name and id == str(obj.id):
+                del objects[name]
+                storage.save()
+                return
+        # issue instance not found error if function still runs
+        print("** no instance found **")
+
 
     # ------------<class_name> handler-------------------------------
     
     def default(self, line=""):
         """Default"""
         # line = User.all()
+        # line = User.show(<id>)
         if line == "":
             return
         args = line.split('.')
@@ -233,17 +262,32 @@ class HBNBCommand(cmd.Cmd):
 
         # args[0] = "User"
         # args[1] = "all()"
+        # args[1] = "show(<id>)"
         if len(args) == 1 and args[0] == line:
             return
         
         method = args[1].split('(')
         # method[0] = "all"
         # method[1] = ")"
+        # method[1] = "<id>)"
+        # method[1] ="id, key, value)"
         if len(method) == 1 and method[0] == args[1]:
             return
+        id = method[1].split(')')[0]
+        # id = "id, key, value"
+        # split id at ','
+        args = id.split(".")
+        # args = ["id", "key", "value"]
+        # id = [0]
+        # strip all extra '' from id
+        # -----------Undetailed behaviour from alx----------
+        id = args[0]
+        if id != '""' and id != "''":
+            id = id.strip('"')
+            id = id.strip("'")
         for x, y in self.commands.items():
             if method[0] == x:
-                y(args[0])
+                y(args[0], id)
 
 
 if __name__ == '__main__':
