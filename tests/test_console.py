@@ -8,7 +8,7 @@ from unittest.mock import patch
 from models.base_model import BaseModel
 import io
 from models import storage
-from models.engine.file_storage import FileStorage
+from models import FileStorage
 import sys
 import json
 
@@ -46,11 +46,11 @@ class TestHBNBCommand(unittest.TestCase):
         """tests if the create command is documented"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
             HBNBCommand().onecmd("help create")
-        msg = 'Creates a new instance.\n'
+        msg = 'creates a new object and saves it to the file\n\n'
         self.assertEqual(msg, mock_stdout.getvalue())
 
     def test_show_nonexisting_instance(self):
-        "tests the show method when an instance is not created yet"
+        """tests the show method when an instance is not created yet"""
         console_instance = HBNBCommand()
         console_prompt = "(hbnb)"
         with patch('builtins.print') as mock_print:
@@ -76,7 +76,7 @@ class TestHBNBCommand(unittest.TestCase):
         """tests the show method when no class is passed"""
         console_instance = HBNBCommand()
         console_prompt = "(hbnb)"
-        with patch("builtin.print") as mock_print:
+        with patch("builtins.print") as mock_print:
             console_instance.onecmd("show")
             mock_print.assert_called_with("** class name missing **")
 
@@ -84,7 +84,7 @@ class TestHBNBCommand(unittest.TestCase):
         """tests the show method when no id is passed"""
         console_instance = HBNBCommand()
         console_prompt = "(hbnb)"
-        with patch("builtin.print") as mock_print:
+        with patch("builtins.print") as mock_print:
             console_instance.onecmd("show BaseModel")
             mock_print.assert_called_with("** instance id missing **")
 
@@ -99,9 +99,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_help_show(self):
         """tests if the show command is documented"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
-            HBNBCommand().onecmd("help create")
-        msg = 'Prints the string representation of an \
-        instance based on the class name and id\n'
+            HBNBCommand().onecmd("help show")
+        msg = 'Print the object of the class and id passed\n\n'
         self.assertEqual(msg, mock_stdout.getvalue())
 
     def test_destroy_missing_class(self):
@@ -128,7 +127,7 @@ class TestHBNBCommand(unittest.TestCase):
         """
         console_instance = HBNBCommand()
         console_prompt = "(hbnb)"
-        with patch("builtin.print") as mock_print:
+        with patch("builtins.print") as mock_print:
             console_instance.onecmd("destroy BaseModel")
             mock_print.assert_called_with("** instance id missing **")
 
@@ -161,8 +160,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_help_destroy(self):
         """tests if the destroy command is documented"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
-            HBNBCommand().onecmd("help create")
-        msg = 'Deletes an instance based on the class name and id\n'
+            HBNBCommand().onecmd("help destroy")
+        msg = 'Destroy the object of the class and id passed\n\n'
         self.assertEqual(msg, mock_stdout.getvalue())
 
     def test_all_nonexisting_class(self):
@@ -170,7 +169,7 @@ class TestHBNBCommand(unittest.TestCase):
         does not exist is passed
         """
         console_instance = HBNBCommand()
-        console_prompt = "(hbnb)"
+        console_prompt = "(hbnb) "
         with patch('builtins.print') as mock_print:
             console_instance.onecmd("all MyModel")
             mock_print.assert_called_with("** class doesn't exist **")
