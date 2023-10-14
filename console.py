@@ -58,6 +58,7 @@ class HBNBCommand(cmd.Cmd):
         if line not in self.classes:
             print("** class doesn't exist **")
             return
+
         # line = "User"
         NewModel = self.classes.get(line)
         obj = NewModel()
