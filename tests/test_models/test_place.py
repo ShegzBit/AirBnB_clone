@@ -50,6 +50,7 @@ class TestPlace(unittest.TestCase):
                     else 0
             else:
                 default_val = []
+
             self.assertEqual(getattr(TestPlace.my_place, attribute),
                              default_val)
 
