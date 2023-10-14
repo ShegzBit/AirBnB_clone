@@ -55,12 +55,13 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        if line not in self.classes:
+        classes = {"BaseModel": BaseModel, "User": User}
+        if line not in classes:
             print("** class doesn't exist **")
             return
 
         # line = "User"
-        NewModel = self.classes.get(line)
+        NewModel = classes.get(line)
         obj = NewModel()
         print(obj.id)
         obj.save()
