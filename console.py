@@ -10,6 +10,8 @@ import models.place
 import models.amenity
 import models.review
 import sys
+import json
+from ast import literal_eval
 
 BaseModel = models.user.BaseModel
 storage = models.storage
@@ -30,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
 
     @staticmethod
     def to_numeral(obj):
-        # checks if a string is convertible to a float
+        """checks if a string is convertible to a float"""
         try:
             int(obj)
             return int(obj)
@@ -40,6 +42,13 @@ class HBNBCommand(cmd.Cmd):
                 return float(obj)
             except ValueError:
                 return obj
+    @staticmethod
+    def to_dict(strn):
+        """Converts literal to py objects in this case dicts"""
+        try:
+            return literal_eval(strn)
+        except (ValueError, SyntaxError):
+            return strn
 
     def preloop(self) -> None:
         self.classes = ({"BaseModel": BaseModel, "User": User, "State": State,
@@ -197,24 +206,25 @@ class HBNBCommand(cmd.Cmd):
 
     # ---------------<class_name> handler methods--------------------
 
-    def handle_all(self, class_name, id=''):
+    def handle_all(self, class_name, sub_args=[]):
         """Handles <classname>.all()"""
         objects = storage._FileStorage__objects
         all = ([obj for obj in objects.values()
                     if obj.__class__.__name__ == class_name])
         print(all)
 
-    def handle_count(self, class_name, id=''):
+    def handle_count(self, class_name, sub_args=[]):
         """Handles <classname>.count()"""
         objects = storage._FileStorage__objects
         all = ([obj for obj in objects.values()
                     if obj.__class__.__name__ == class_name])
         print(len(all))
 
-    def handle_show(self, class_name, id=''):
+    def handle_show(self, class_name, sub_args=[]):
         """Handles <classname>.all"""
         objects = storage._FileStorage__objects
         # handle for no id passed
+        id = sub_args[0]
         if id == '':
             print("** instance id missing **")
             return
@@ -227,7 +237,7 @@ class HBNBCommand(cmd.Cmd):
         # issue instance not found error if function still runs
         print("** no instance found **")
 
-    def handle_destroy(self, class_name, id=''):
+    def handle_destroy(self, class_name, sub_args=[]):
         """Handles <classname>.show"""
         objects = storage._FileStorage__objects
         # handle for no id passed
@@ -273,21 +283,32 @@ class HBNBCommand(cmd.Cmd):
         # method[1] ="id, key, value)"
         if len(method) == 1 and method[0] == args[1]:
             return
-        id = method[1].split(')')[0]
+        _args = method[1].split(')')[0]
         # id = "id, key, value"
         # split id at ','
-        args = id.split(".")
+        # split only once if it contains a dictionary
+        is_dict = False
+        if '{' in _args and '}' in _args:
+            sub_args = _args.split(",", 1)
+        # else split as many times
+        else:
+            sub_args = _args.split(",")
         # args = ["id", "key", "value"]
         # id = [0]
-        # strip all extra '' from id
         # -----------Undetailed behaviour from alx----------
-        id = args[0]
-        if id != '""' and id != "''":
-            id = id.strip('"')
-            id = id.strip("'")
+        # strip all extra ' and " from id
+        # split at space before quotes
+        for i in range(len(sub_args)):
+            if sub_args[i] != '""' and sub_args[i] != "''":
+                sub_args[i] = sub_args[i].strip(" ")
+                sub_args[i] = sub_args[i].strip('"')
+                sub_args[i] = sub_args[i].strip("'")
+            if is_dict is True:
+                break
         for x, y in self.commands.items():
             if method[0] == x:
-                y(args[0], id)
+                print(sub_args)
+                y(args[0], sub_args)
 
 
 if __name__ == '__main__':
