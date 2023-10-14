@@ -30,29 +30,25 @@ class HBNBCommand(cmd.Cmd):
             except ValueError:
                 return obj
 
-    def preloop(self) -> None:
+    def __init__(self):
+        cmd.Cmd.__init__(self)
         self.classes = {"BaseModel": BaseModel, "User": User}
-        return super().preloop()
 
     def do_quit(self, line):
-        """Quit command to exit the program
-"""
+        """Quit command to exit the program"""
         exit(0)
 
     def emptyline(self):
-        """Handles empty line passed as command
-"""
+        """Handles empty line passed as command"""
         pass
 
     def do_EOF(self, line):
-        """cleanly exits command line interface on EOF signal (on `ctrl + D`)
-"""
+        """cleanly exits command line interface on EOF signal (on `ctrl + D`)"""
         print()
         exit(0)
 
     def do_create(self, line=""):
-        """creates a new object and saves it to the file
-"""
+        """creates a new object and saves it to the file"""
         if line == "":
             print("** class name missing **")
             return
@@ -65,8 +61,7 @@ class HBNBCommand(cmd.Cmd):
         obj.save()
 
     def do_show(self, line=""):
-        """Print the object of the class and id passed
-"""
+        """Print the object of the class and id passed"""
         args = line.split()
         # line = "BaseModel id"
         # args = ["BaseModel", "<id>"]
@@ -91,8 +86,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, line=""):
-        """Destroy the object of the class and id passed
-"""
+        """Destroy the object of the class and id passed"""
         args = line.split()
         if line == "":
             print("** class name missing **")
@@ -115,8 +109,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, line=""):
-        """Prints all obj of type passed to all
-"""
+        """Prints all obj of type passed to all"""
         objects = storage._FileStorage__objects
         all = []
         # if line is empty string fetch all
@@ -134,8 +127,7 @@ class HBNBCommand(cmd.Cmd):
         print(all)
 
     def do_update(self, line=""):
-        """updates the attribute of a class
-"""
+        """updates the attribute of a class"""
         attr = []
         if line == "":
             print("** class name missing **")
