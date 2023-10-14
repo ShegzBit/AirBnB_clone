@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 A module for Base model for all classes in AirBnB console
 """
