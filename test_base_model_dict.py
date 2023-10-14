@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/c/Users/maham/AppData/Local/Microsoft/WindowsApps/python
 from models.base_model import BaseModel
 
 my_model = BaseModel()
