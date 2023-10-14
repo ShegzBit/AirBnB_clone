@@ -3,10 +3,23 @@
 This module contains a file storage system for Base Model and
 it subclasses
 """
-import json
+import cmd
+import models.user
+import models.state
+import models.city
+import models.place
+import models.amenity
+import models.review
 from os import path
-from models.base_model import BaseModel
-from models.user import User
+import json
+
+BaseModel = models.user.BaseModel
+User = models.user.User
+State = models.state.State
+City = models.city.City
+Place = models.place.Place
+Amenity = models.amenity.Amenity
+Review = models.review.Review
 
 
 class FileStorage:
@@ -17,7 +30,9 @@ class FileStorage:
     __objects = {}
     __obj = {}
     __file_path = "file.json"
-    classes = {"BaseModel": BaseModel, "User": User}
+    classes = ({"Amenity": Amenity, "BaseModel": BaseModel, "User": User,
+                "City": City, "Place": Place,
+                "Review": Review, "State": State})
 
     def all(self):
         """
@@ -39,7 +54,7 @@ class FileStorage:
         """
         filename = FileStorage.__file_path
         # write __objectsect to json file
-        new_obj = {x: y.to_dict() for x, y in FileStorage.__objects.items()}
+        new_obj = {x: y.to_dict()for x, y in FileStorage.__objects.items()}
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(new_obj, f, indent=4)
 

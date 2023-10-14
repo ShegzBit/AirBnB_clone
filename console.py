@@ -3,11 +3,25 @@
 Basic console for HBNB  frontend usage
 """
 import cmd
+import cmd
 import models.user
+import models.state
+import models.city
+import models.place
+import models.amenity
+import models.review
+import sys
+import json
+from ast import literal_eval
 
 BaseModel = models.user.BaseModel
 storage = models.storage
 User = models.user.User
+State = models.state.State
+City = models.city.City
+Place = models.place.Place
+Amenity = models.amenity.Amenity
+Review = models.review.Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -30,10 +44,6 @@ class HBNBCommand(cmd.Cmd):
             except ValueError:
                 return obj
 
-    def preloop(self) -> None:
-        self.classes = {"BaseModel": BaseModel, "User": User}
-        return super().preloop()
-
     def do_quit(self, line):
         """Quit command to exit the program"""
         exit(0)
@@ -43,7 +53,8 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_EOF(self, line):
-        """cleanly exits command line interface on EOF signal (on `ctrl + D`)"""
+        """cleanly exits command line interface\
+on EOF signal (on `ctrl + D`)"""
         print()
         exit(0)
 
@@ -52,7 +63,10 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        classes = {"BaseModel": BaseModel, "User": User}
+        classes = ({"Amenity": Amenity, "BaseModel": BaseModel, "User": User,
+                    "City": City, "Place": Place,
+                    "Review": Review, "State": State})
+
         if line not in classes:
             print("** class doesn't exist **")
             return
@@ -69,7 +83,10 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        classes = {"BaseModel": BaseModel, "User": User}
+        classes = ({"Amenity": Amenity, "BaseModel": BaseModel, "User": User,
+                    "City": City, "Place": Place,
+                    "Review": Review, "State": State})
+
         if args[0] not in classes:
             print("** class doesn't exist **")
             return
@@ -93,7 +110,10 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        classes = {"BaseModel": BaseModel, "User": User}
+        classes = ({"Amenity": Amenity, "BaseModel": BaseModel, "User": User,
+                    "City": City, "Place": Place,
+                    "Review": Review, "State": State})
+
         if args[0] not in classes:
             print("** class doesn't exist **")
             return
@@ -116,7 +136,10 @@ class HBNBCommand(cmd.Cmd):
         objects = storage._FileStorage__objects
         all = []
         # if line is empty string fetch all
-        classes = {"BaseModel": BaseModel, "User": User}
+        classes = ({"Amenity": Amenity, "BaseModel": BaseModel, "User": User,
+                    "City": City, "Place": Place,
+                    "Review": Review, "State": State})
+
         if line not in classes.keys() and line != '':
             print("** class doesn't exist **")
             return
@@ -141,7 +164,10 @@ class HBNBCommand(cmd.Cmd):
         # local_classes = ["BaseModel", "User"]
         args = line.split()
         # check for Class in available classes
-        classes = {"BaseModel": BaseModel, "User": User}
+        classes = ({"Amenity": Amenity, "BaseModel": BaseModel, "User": User,
+                    "City": City, "Place": Place,
+                    "Review": Review, "State": State})
+
         if args[0] not in classes:
             print("** class doesn't exist **")
             return
