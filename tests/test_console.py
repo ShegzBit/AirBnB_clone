@@ -47,7 +47,7 @@ class TestHBNBCommand(unittest.TestCase):
         """tests if the create command is documented"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
             HBNBCommand().onecmd("help create")
-        msg = 'creates a new object and saves it to the file\n\n'
+        msg = 'creates a new object and saves it to the file\n'
         self.assertEqual(msg, mock_stdout.getvalue())
 
     def test_show_nonexisting_instance(self):
@@ -101,7 +101,7 @@ class TestHBNBCommand(unittest.TestCase):
         """tests if the show command is documented"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
             HBNBCommand().onecmd("help show")
-        msg = 'Print the object of the class and id passed\n\n'
+        msg = 'Print the object of the class and id passed\n'
         self.assertEqual(msg, mock_stdout.getvalue())
 
     def test_destroy_missing_class(self):
@@ -162,7 +162,7 @@ class TestHBNBCommand(unittest.TestCase):
         """tests if the destroy command is documented"""
         with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
             HBNBCommand().onecmd("help destroy")
-        msg = 'Destroy the object of the class and id passed\n\n'
+        msg = 'Destroy the object of the class and id passed\n'
         self.assertEqual(msg, mock_stdout.getvalue())
 
     def test_all_nonexisting_class(self):
