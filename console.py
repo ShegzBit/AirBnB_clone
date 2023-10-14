@@ -30,6 +30,10 @@ class HBNBCommand(cmd.Cmd):
             except ValueError:
                 return obj
 
+    def __init__(self):
+        cmd.Cmd.__init__(self)
+        self.classes = {"BaseModel": BaseModel, "User": User}
+
     def preloop(self) -> None:
         self.classes = {"BaseModel": BaseModel, "User": User}
         return super().preloop()
