@@ -30,10 +30,6 @@ class HBNBCommand(cmd.Cmd):
             except ValueError:
                 return obj
 
-    def __init__(self):
-        cmd.Cmd.__init__(self)
-        self.classes = {"BaseModel": BaseModel, "User": User}
-
     def preloop(self) -> None:
         self.classes = {"BaseModel": BaseModel, "User": User}
         return super().preloop()
@@ -56,7 +52,8 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        if line not in self.classes:
+        classes = {"BaseModel": BaseModel, "User": User}
+        if line not in classes:
             print("** class doesn't exist **")
             return
         NewModel = self.classes.get(line)
@@ -72,7 +69,8 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        if args[0] not in self.classes:
+        classes = {"BaseModel": BaseModel, "User": User}
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
         if len(args) == 1:
@@ -95,7 +93,8 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        if args[0] not in self.classes:
+        classes = {"BaseModel": BaseModel, "User": User}
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
         if len(args) == 1:
@@ -117,7 +116,8 @@ class HBNBCommand(cmd.Cmd):
         objects = storage._FileStorage__objects
         all = []
         # if line is empty string fetch all
-        if line not in self.classes.keys() and line != '':
+        classes = {"BaseModel": BaseModel, "User": User}
+        if line not in classes.keys() and line != '':
             print("** class doesn't exist **")
             return
 
@@ -141,7 +141,8 @@ class HBNBCommand(cmd.Cmd):
         # local_classes = ["BaseModel", "User"]
         args = line.split()
         # check for Class in available classes
-        if args[0] not in self.classes:
+        classes = {"BaseModel": BaseModel, "User": User}
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
