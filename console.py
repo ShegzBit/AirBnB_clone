@@ -55,10 +55,11 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        if line not in self.classes:
+        classes = {"BaseModel": BaseModel, "User": User}
+        if line not in classes:
             print("** class doesn't exist **")
             return
-        NewModel = self.classes.get(line)
+        NewModel = classes.get(line)
         obj = NewModel()
         print(obj.id)
         obj.save()
@@ -72,7 +73,8 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        if args[0] not in self.classes:
+        classes = {"BaseModel": BaseModel, "User": User}
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
         if len(args) == 1:
@@ -96,7 +98,8 @@ class HBNBCommand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        if args[0] not in self.classes:
+        classes = {"BaseModel": BaseModel, "User": User}
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
         if len(args) == 1:
@@ -119,7 +122,8 @@ class HBNBCommand(cmd.Cmd):
         objects = storage._FileStorage__objects
         all = []
         # if line is empty string fetch all
-        if line not in self.classes.keys() and line != '':
+        classes = {"BaseModel": BaseModel, "User": User}
+        if line not in classes.keys() and line != '':
             print("** class doesn't exist **")
             return
         if line == "":
@@ -143,7 +147,8 @@ class HBNBCommand(cmd.Cmd):
         # local_classes = ["BaseModel", "User"]
         args = line.split()
         # check for Class in available classes
-        if args[0] not in self.classes:
+        classes = {"BaseModel": BaseModel, "User": User}
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
