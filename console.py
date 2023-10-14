@@ -13,6 +13,8 @@ import models.review
 import sys
 import json
 from ast import literal_eval
+import re
+import shlex
 
 BaseModel = models.user.BaseModel
 storage = models.storage
@@ -162,7 +164,9 @@ on EOF signal (on `ctrl + D`)"""
         # list of available classes
         objects = storage._FileStorage__objects
         # local_classes = ["BaseModel", "User"]
-        args = line.split()
+        args = shlex.split(line)
+        # line = 'User 121212 name "Hamida"'
+        # args = ["User", "121212", "name", "Hamida"]
         # check for Class in available classes
         classes = ({"Amenity": Amenity, "BaseModel": BaseModel, "User": User,
                     "City": City, "Place": Place,
@@ -182,6 +186,7 @@ on EOF signal (on `ctrl + D`)"""
             obj_id = str(obj.id)
             if class_name == args[0] and obj_id == args[1]:
                 main_object = obj
+                break
         if main_object is None:
             print("** no instance found **")
             return
