@@ -81,4 +81,3 @@ class BaseModel:
         new_dict.update({"updated_at": updated})
 
         return new_dict
-

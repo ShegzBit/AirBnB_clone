@@ -10,5 +10,5 @@ class City(BaseModel):
     """
     City class for Airbnb project
     """
-    state_id =""
+    state_id = ""
     name = ""
