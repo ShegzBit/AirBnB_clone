@@ -1,4 +1,4 @@
-#!/usr/env/python3
+#!/usr/bin/python3
 """
 This module contains State class for Airbnb console
 project
