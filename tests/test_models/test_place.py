@@ -44,9 +44,12 @@ class TestPlace(unittest.TestCase):
             "price_by_night", "latitude", "longitude", "amenity_ids"
         ]
         for attribute in attributes_to_check:
-            default_val = "" \
-                if isinstance(getattr(TestPlace.my_place, attribute), str) \
-                else 0
+            if not isinstance(getattr(TestPlace.my_place, attribute), list):
+                default_val = "" \
+                    if isinstance(getattr(TestPlace.my_place, attribute), str) \
+                    else 0
+            else:
+                default_val = []
             self.assertEqual(getattr(TestPlace.my_place, attribute),
                              default_val)
 

@@ -78,5 +78,150 @@
         "created_at": "2023-10-13T12:44:25.798974",
         "updated_at": "2023-10-13T12:44:25.799192",
         "__class__": "User"
+    },
+    "BaseModel.c3343db0-9570-4872-ae97-7c0b62a317cb": {
+        "id": "c3343db0-9570-4872-ae97-7c0b62a317cb",
+        "created_at": "2023-10-14T03:05:05.246827",
+        "updated_at": "2023-10-14T03:05:06.254975",
+        "name": "My_First_Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
+    },
+    "City.a3f549f9-839d-4324-b614-99dd0d6aad87": {
+        "id": "a3f549f9-839d-4324-b614-99dd0d6aad87",
+        "created_at": "2023-10-14T03:05:05.248450",
+        "updated_at": "2023-10-14T03:05:05.248450",
+        "__class__": "City"
+    },
+    "Place.539b7abb-0dcf-4d21-91b2-531e8bfcabce": {
+        "id": "539b7abb-0dcf-4d21-91b2-531e8bfcabce",
+        "created_at": "2023-10-14T03:05:05.249488",
+        "updated_at": "2023-10-14T03:05:05.249488",
+        "__class__": "Place"
+    },
+    "Review.aa96396d-24d2-4962-be0c-5e4b6565c3c7": {
+        "id": "aa96396d-24d2-4962-be0c-5e4b6565c3c7",
+        "created_at": "2023-10-14T03:05:05.250367",
+        "updated_at": "2023-10-14T03:05:05.250367",
+        "__class__": "Review"
+    },
+    "State.e125c3c8-8883-4fd4-94a7-478f4c18197b": {
+        "id": "e125c3c8-8883-4fd4-94a7-478f4c18197b",
+        "created_at": "2023-10-14T03:05:05.251232",
+        "updated_at": "2023-10-14T03:05:05.251232",
+        "__class__": "State"
+    },
+    "User.faf0e699-91be-4b9a-8acd-5fdae0225a0b": {
+        "id": "faf0e699-91be-4b9a-8acd-5fdae0225a0b",
+        "created_at": "2023-10-14T03:05:05.252235",
+        "updated_at": "2023-10-14T03:05:05.252235",
+        "__class__": "User"
+    },
+    "BaseModel.5dddf3bc-597e-420a-a7ed-ed085bb41f76": {
+        "id": "5dddf3bc-597e-420a-a7ed-ed085bb41f76",
+        "created_at": "2023-10-14T03:14:53.157698",
+        "updated_at": "2023-10-14T03:14:54.186381",
+        "name": "My_First_Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
+    },
+    "City.5646fe72-11bf-45c1-b33c-63215fa814b9": {
+        "id": "5646fe72-11bf-45c1-b33c-63215fa814b9",
+        "created_at": "2023-10-14T03:14:53.158936",
+        "updated_at": "2023-10-14T03:14:53.158936",
+        "__class__": "City"
+    },
+    "Review.c427c695-8984-4b70-9297-f34a210adcb1": {
+        "id": "c427c695-8984-4b70-9297-f34a210adcb1",
+        "created_at": "2023-10-14T03:14:53.181184",
+        "updated_at": "2023-10-14T03:14:53.181184",
+        "__class__": "Review"
+    },
+    "State.3e3bf1a7-7e9f-4a17-871a-c1bcb3d2fdb2": {
+        "id": "3e3bf1a7-7e9f-4a17-871a-c1bcb3d2fdb2",
+        "created_at": "2023-10-14T03:14:53.182018",
+        "updated_at": "2023-10-14T03:14:53.182018",
+        "__class__": "State"
+    },
+    "User.98c81721-b724-4c8a-81dc-d0cd107bc64f": {
+        "id": "98c81721-b724-4c8a-81dc-d0cd107bc64f",
+        "created_at": "2023-10-14T03:14:53.182959",
+        "updated_at": "2023-10-14T03:14:53.182959",
+        "__class__": "User"
+    },
+    "BaseModel.9c53e8ed-16bb-47e3-a257-431670a0d663": {
+        "id": "9c53e8ed-16bb-47e3-a257-431670a0d663",
+        "created_at": "2023-10-14T03:15:19.942661",
+        "updated_at": "2023-10-14T03:15:20.952597",
+        "name": "My_First_Model",
+        "my_number": 89,
+        "__class__": "BaseModel"
+    },
+    "City.761a5a02-ef3c-4943-b05d-3aecb9a1c73c": {
+        "id": "761a5a02-ef3c-4943-b05d-3aecb9a1c73c",
+        "created_at": "2023-10-14T03:15:19.943920",
+        "updated_at": "2023-10-14T03:15:19.943920",
+        "__class__": "City"
+    },
+    "Place.2c82d9a2-851b-4c85-8103-842f54e0968a": {
+        "id": "2c82d9a2-851b-4c85-8103-842f54e0968a",
+        "created_at": "2023-10-14T03:15:19.945520",
+        "updated_at": "2023-10-14T03:15:19.945520",
+        "__class__": "Place"
+    },
+    "Review.7976e016-8194-4079-8f78-84fa7078aed3": {
+        "id": "7976e016-8194-4079-8f78-84fa7078aed3",
+        "created_at": "2023-10-14T03:15:19.946536",
+        "updated_at": "2023-10-14T03:15:19.946536",
+        "__class__": "Review"
+    },
+    "State.760fbc29-39f2-4741-bc72-852b40914135": {
+        "id": "760fbc29-39f2-4741-bc72-852b40914135",
+        "created_at": "2023-10-14T03:15:19.947829",
+        "updated_at": "2023-10-14T03:15:19.947829",
+        "__class__": "State"
+    },
+    "User.e959c08f-b2ae-4461-80a7-c26b85792833": {
+        "id": "e959c08f-b2ae-4461-80a7-c26b85792833",
+        "created_at": "2023-10-14T03:15:19.949768",
+        "updated_at": "2023-10-14T03:15:19.949768",
+        "__class__": "User"
+    },
+    "Review.de1fe770-a2a5-4597-9986-c382cd55ef56": {
+        "id": "de1fe770-a2a5-4597-9986-c382cd55ef56",
+        "created_at": "2023-10-14T04:20:07.208177",
+        "updated_at": "2023-10-14T04:20:07.208395",
+        "__class__": "Review"
+    },
+    "Review.827e37b8-1127-4417-9225-96481194dd43": {
+        "id": "827e37b8-1127-4417-9225-96481194dd43",
+        "created_at": "2023-10-14T04:24:07.013430",
+        "updated_at": "2023-10-14T04:24:07.013652",
+        "__class__": "Review"
+    },
+    "User.ceb04583-6f5a-46a8-966f-49016b640259": {
+        "id": "ceb04583-6f5a-46a8-966f-49016b640259",
+        "created_at": "2023-10-14T04:26:10.142805",
+        "updated_at": "2023-10-14T04:26:10.143006",
+        "name": "Feranmi",
+        "Hobby": "Tech",
+        "age": 1000,
+        "__class__": "User"
+    },
+    "User.7632027a-0932-428f-84cb-f9021e3a8ab7": {
+        "id": "7632027a-0932-428f-84cb-f9021e3a8ab7",
+        "created_at": "2023-10-14T08:31:21.080571",
+        "updated_at": "2023-10-14T08:31:21.080793",
+        "first_name": "John",
+        "age": 89,
+        "__class__": "User"
+    },
+    "User.81e1bb05-62b6-43df-b8f2-ce2b9c6abcdf": {
+        "id": "81e1bb05-62b6-43df-b8f2-ce2b9c6abcdf",
+        "created_at": "2023-10-14T08:35:48.309896",
+        "updated_at": "2023-10-14T08:35:48.310033",
+        "first_name": "Gabriel",
+        "age": 89,
+        "__class__": "User"
     }
 }

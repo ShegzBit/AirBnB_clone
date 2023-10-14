@@ -53,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
     def preloop(self) -> None:
         self.classes = ({"BaseModel": BaseModel, "User": User, "State": State,
                 "City": City, "Place": Place, "Amenity": Amenity, "Review": Review})
-        self.commands = {"all": self.handle_all, "count":self.handle_count, "show":self.handle_show, "destroy": self.handle_destroy}
+        self.commands = {"all": self.handle_all, "count":self.handle_count, "show":self.handle_show, "destroy": self.handle_destroy, "update": self.handler_update}
         
         return super().preloop()
 
@@ -245,6 +245,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         # loop through the objects to find instance
+        id = sub_args[0]
         for name, obj in objects.items():
             obj_class = obj.__class__.__name__
             if obj_class == class_name and id == str(obj.id):
@@ -253,6 +254,48 @@ class HBNBCommand(cmd.Cmd):
                 return
         # issue instance not found error if function still runs
         print("** no instance found **")
+
+    def handler_update(self, class_name, sub_args):
+        """Handles Updare called by <class_name>.update"""
+        def dict_update(self, attr_dict):
+            """Updates an object using a dictionary of attributes"""
+            for attr, value in attr_dict.items():
+                setattr(self, attr, value)
+            storage.save()
+        is_dict = True
+        if len(sub_args) < 1:
+            print("** instance id missing **")
+            return
+        if len(sub_args) == 1 and sub_args[0] == '':
+            print("** instance id missing **")
+            return
+        id_exists = False
+        id = sub_args[0]
+        # objects = storage._FileStorage__objects
+        objects = storage.all()
+        for obj in objects.values():
+            cls_name_obj = obj.__class__.__name__
+            if str(obj.id) == id and cls_name_obj == class_name:
+                main_obj = obj
+                id_exists = True
+                break
+        if id_exists is False:
+            print("** no instance found **")
+            return
+        if len(sub_args) < 2:
+            print("** attribute name missing **")
+            return
+        to_dict = HBNBCommand.to_dict
+        if len(sub_args) > 1 and not isinstance(to_dict(sub_args[1]), dict):
+            if len(sub_args) < 3:
+                print("** value missing **")
+                return
+            to_numeral = HBNBCommand.to_numeral
+            attr_dict = {sub_args[1]: to_numeral(sub_args[2])}
+            is_dict = False
+        if is_dict is True:
+            attr_dict = to_dict(sub_args[1])
+        dict_update(main_obj, attr_dict)
 
 
     # ------------<class_name> handler-------------------------------
@@ -307,7 +350,6 @@ class HBNBCommand(cmd.Cmd):
                 break
         for x, y in self.commands.items():
             if method[0] == x:
-                print(sub_args)
                 y(args[0], sub_args)
 
 

@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/home/shegz/AirBnB_clone/./console.py", line 289, in <module>
-    HBNBCommand().cmdloop()
-  File "/usr/lib/python3.10/cmd.py", line 126, in cmdloop
-    line = input(self.prompt)
-KeyboardInterrupt
