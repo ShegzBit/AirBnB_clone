@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 This module contains a file storage system for Base Model and
 it subclasses
@@ -56,7 +56,7 @@ class FileStorage:
         # write __objectsect to json file
         new_obj = {x: y.to_dict()for x, y in FileStorage.__objects.items()}
         with open(filename, "w", encoding="utf-8") as f:
-            json.dump(new_obj, f, indent=4)
+            json.dump(new_obj, f)
 
     def reload(self):
         """
