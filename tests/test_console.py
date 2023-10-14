@@ -22,8 +22,11 @@ class TestHBNBCommand(unittest.TestCase):
         console_prompt = "(hbnb)"
         with patch('builtins.input', return_value="BaseModel"):
             with patch('models.storage.save') as mock_save:
+                id = io.StringIO()
+                sys.stdout = id
                 console_instance.onecmd("create BaseModel")
                 mock_save.assert_called_once()
+                sys.stdout = sys.__stdout__
 
     def test_create_missing_classname(self):
         """tests for output when a classname is not passed"""
