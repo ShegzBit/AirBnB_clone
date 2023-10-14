@@ -120,7 +120,9 @@ class HBNBCommand(cmd.Cmd):
         objects = storage._FileStorage__objects
         all = []
         # if line is empty string fetch all
-        line_empty = False
+        if line not in self.classes.keys() and line != '':
+            print("** class doesn't exist **")
+            return
         if line == "":
             all = [str(obj) for obj in objects.values()]
             line_empty = True
@@ -128,9 +130,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             all = ([str(obj) for obj in objects.values()
                     if obj.__class__.__name__ == line])
-        if all == [] and not line_empty:
-            print("** class doesn't exist **")
-            return
         print(all)
 
     def do_update(self, line=""):
