@@ -46,8 +46,7 @@ class TestPlace(unittest.TestCase):
         for attribute in attributes_to_check:
             if not isinstance(getattr(TestPlace.my_place, attribute), list):
                 default_val = "" \
-                    if isinstance(getattr(TestPlace.my_place, attribute),
-                                  str) \
+                    if isinstance(getattr(TestPlace.my_place, attribute), str) \
                     else 0
             else:
                 default_val = []
