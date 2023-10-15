@@ -15,6 +15,12 @@ class TestBase(unittest.TestCase):
 
     my_model = BaseModel()
 
+    def test_base_init(self):
+        """tests if an instance has class BaseModel"""
+        self.assertIsInstance(TestBase.my_model, BaseModel)
+        self.assertEqual(str(type(TestBase.my_model)),
+                         "<class 'models.base_model.BaseModel'>")
+
     def test_instance_attributes(self):
         """test attriutes of the created instance of the base class"""
         self.assertTrue(hasattr(TestBase.my_model, "id"))
@@ -74,6 +80,17 @@ class TestBase(unittest.TestCase):
         self.assertEqual(self.my_model.created_at, new_model.created_at)
         self.assertEqual(self.my_model.updated_at, new_model.updated_at)
         self.assertFalse(self.my_model is new_model)
+
+    def test_base_init_many_args(self):
+        """tests base by passing a  variety of arguments."""
+        my_model = BaseModel(0, "string", True, 3.14, [1, 2, 3],
+                             {"key": "value"})
+        self.assertIsInstance(my_model, BaseModel)
+
+    def test_unique_ids(self):
+        """tests the uniqueness of ids"""
+        my_model2 = BaseModel()
+        self.assertNotEqual(TestBase.my_model, my_model2)
 
 
 if __name__ == "__main__":
