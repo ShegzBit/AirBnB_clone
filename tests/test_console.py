@@ -239,6 +239,40 @@ class TestHBNBCommand(unittest.TestCase):
             console_instance.onecmd(f"update BaseModel {id} email")
             mock_print.assert_called_with("** value missing **")
 
+    def test_quit(self):
+        """tests the quit method"""
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            with self.assertRaises(SystemExit) as context:
+                HBNBCommand().onecmd("quit")
+
+        self.assertEqual(context.exception.code, 0)
+        output = mock_stdout.getvalue()
+        self.assertEqual(output, "")
+
+    def test_help_quit(self):
+        """tests if the quit command is documented"""
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            HBNBCommand().onecmd("help quit")
+        msg = 'Quit command to exit the program\n'
+        self.assertEqual(msg, mock_stdout.getvalue())
+
+    def test_EOF(self):
+        """tests for the EOF method"""
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            with self.assertRaises(SystemExit) as context:
+                HBNBCommand().onecmd("EOF")
+        self.assertEqual(context.exception.code, 0)
+        output = mock_stdout.getvalue()
+        self.assertEqual(output, "\n")
+
+    def test_help_EOF(self):
+        """tests if the EOF command is documented"""
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            HBNBCommand().onecmd("help EOF")
+        msg = "cleanly exits command line interface on " + \
+            "EOF signal (on `ctrl + D`)\n\n"
+        self.assertEqual(msg, mock_stdout.getvalue())
+
 
 if __name__ == "__main__":
     unittest.main()
