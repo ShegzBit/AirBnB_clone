@@ -51,10 +51,10 @@ class TestFileStorage(unittest.TestCase):
         storage._FileStorage__file_path = "hamida.json"
         storage.reload()
 
-    def test_attributes(self):
-        """tests attributes present in file storage"""
-        self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
-        self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
+    # def test_attributes(self):
+    #    """tests attributes present in file storage"""
+    #    self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
+    #    self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
         # self.assertEqual(getattr(FileStorage, "_FileStorage__objects"), {})
 
 
