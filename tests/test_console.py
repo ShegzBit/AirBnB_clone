@@ -273,6 +273,18 @@ class TestHBNBCommand(unittest.TestCase):
             "EOF signal (on `ctrl + D`)\n\n"
         self.assertEqual(msg, mock_stdout.getvalue())
 
+    def test_help(self):
+        """tests the help command"""
+        with patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            HBNBCommand().onecmd("help")
+        msg = """
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
+
+"""
+        self.assertEqual(msg, mock_stdout.getvalue())
+
 
 if __name__ == "__main__":
     unittest.main()
