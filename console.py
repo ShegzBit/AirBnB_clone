@@ -45,6 +45,7 @@ class HBNBCommand(cmd.Cmd):
                 return float(obj)
             except ValueError:
                 return obj
+
     @staticmethod
     def to_dict(strn):
         """Converts literal to py objects in this case dicts"""
@@ -135,10 +136,10 @@ class HBNBCommand(cmd.Cmd):
             # If a dictionary has id = args[1] delete it
             if y.id == args[1] and y.__class__.__name__ == args[0]:
                 del storage._FileStorage__objects[x]
-                id_exists = True
-                break
-        if id_exists is False:
-            print("** no instance found **")
+                storage.save()
+                return
+        # if id not found
+        print("** no instance found **")
 
     def do_all(self, line=""):
         """Prints all obj of type passed to all"""
@@ -221,14 +222,14 @@ class HBNBCommand(cmd.Cmd):
         """Handles <classname>.all()"""
         objects = storage._FileStorage__objects
         all = ([obj for obj in objects.values()
-                    if obj.__class__.__name__ == class_name])
+                if obj.__class__.__name__ == class_name])
         print(all)
 
     def handle_count(self, class_name, sub_args=[]):
         """Handles <classname>.count()"""
         objects = storage._FileStorage__objects
         all = ([obj for obj in objects.values()
-                    if obj.__class__.__name__ == class_name])
+                if obj.__class__.__name__ == class_name])
         print(len(all))
 
     def handle_show(self, class_name, sub_args=[]):
@@ -250,8 +251,9 @@ class HBNBCommand(cmd.Cmd):
 
     def handle_destroy(self, class_name, sub_args=[]):
         """Handles <classname>.show"""
-        objects = storage._FileStorage__objects
+        objects = storage.all()
         # handle for no id passed
+        id = sub_args[0]
         if id == '':
             print("** instance id missing **")
             return
@@ -270,8 +272,9 @@ class HBNBCommand(cmd.Cmd):
         """Handles Updare called by <class_name>.update"""
         def dict_update(self, attr_dict):
             """Updates an object using a dictionary of attributes"""
+            to_num = HBNBCommand.to_numeral
             for attr, value in attr_dict.items():
-                setattr(self, attr, value)
+                setattr(self, attr, to_num(value))
             storage.save()
         is_dict = True
         if len(sub_args) < 1:
@@ -308,9 +311,8 @@ class HBNBCommand(cmd.Cmd):
             attr_dict = to_dict(sub_args[1])
         dict_update(main_obj, attr_dict)
 
-
     # ------------<class_name> handler-------------------------------
-    
+
     def default(self, line=""):
         """Default"""
         # line = User.all()
@@ -319,8 +321,8 @@ class HBNBCommand(cmd.Cmd):
             return
         args = line.split('.')
 
-        if args[0] not in (["User", "BaseModel", "Amenity", "City", 
-                "Place", "Review", "State"]):
+        if args[0] not in (["User", "BaseModel", "Amenity", "City",
+                            "Place", "Review", "State"]):
             print(f'*** Unknown syntax: {args[0]}')
             return
 
@@ -329,7 +331,7 @@ class HBNBCommand(cmd.Cmd):
         # args[1] = "show(<id>)"
         if len(args) == 1 and args[0] == line:
             return
-        
+
         method = args[1].split('(')
         # method[0] = "all"
         # method[1] = ")"
@@ -359,7 +361,10 @@ class HBNBCommand(cmd.Cmd):
                 sub_args[i] = sub_args[i].strip("'")
             if is_dict is True:
                 break
-        for x, y in self.commands.items():
+        commands = ({"all": self.handle_all, "count": self.handle_count,
+                    "show": self.handle_show, "destroy": self.handle_destroy,
+                     "update": self.handler_update})
+        for x, y in commands.items():
             if method[0] == x:
                 y(args[0], sub_args)
 
