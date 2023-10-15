@@ -9,18 +9,12 @@ from unittest.mock import patch
 from models.engine.file_storage import FileStorage
 import io
 from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
 
 
 class TestFileStorage(unittest.TestCase):
     """test class for file storage"""
     my_model = BaseModel()
-
+    
     def test_all(self):
         """test the all method"""
         all_objs = storage.all()
@@ -45,7 +39,17 @@ class TestFileStorage(unittest.TestCase):
     def test_storage_instance(self):
         """tests if storage is an instance of FileStorage"""
         self.assertEqual(type(storage).__name__, "FileStorage")
-
+    
+    def test_new(self):
+        """tests the new method to check if it saves an obj to
+        __objects dictionary with the format <classname>.id"""
+        self.assertIn("{}.{}".format("BaseModel", TestFileStorage.my_model.id),
+                      storage._FileStorage__objects)
+    
+    def test_reload(self):
+        """tests the reload method"""
+        storage._FileStorage__file_path = "hamida.json"
+        storage.reload()
 
 if __name__ == "__main__":
     unittest.main()
