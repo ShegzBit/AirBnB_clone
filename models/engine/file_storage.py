@@ -21,7 +21,6 @@ Place = models.place.Place
 Amenity = models.amenity.Amenity
 Review = models.review.Review
 
-
 class FileStorage:
     """
     A file storage system to persist objects created
@@ -54,7 +53,7 @@ class FileStorage:
         """
         filename = FileStorage.__file_path
         # write __objectsect to json file
-        new_obj = {x: y.to_dict()for x, y in FileStorage.__objects.items()}
+        new_obj = {x: y.to_dict() for x, y in FileStorage.__objects.items()}
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(new_obj, f)
 
