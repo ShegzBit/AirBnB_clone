@@ -1,4 +1,4 @@
-#!usr/bin/env python3
+#!/usr/bin/python3
 """
 This module contains Amenity class for Airbnb
 """
