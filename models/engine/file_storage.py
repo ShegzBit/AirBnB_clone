@@ -21,7 +21,6 @@ Place = models.place.Place
 Amenity = models.amenity.Amenity
 Review = models.review.Review
 
-
 class FileStorage:
     """
     A file storage system to persist objects created
