@@ -173,6 +173,7 @@ class HBNBCommand(cmd.Cmd):
             attr = attr[:-1]
         # set first and second attribute
         # convert attribute to the right type first
+
         attr_1 = HBNBCommand.to_numeral(attr[1])
         setattr(main_object, attr[0], attr_1)
         storage.save()
