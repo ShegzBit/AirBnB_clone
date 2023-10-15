@@ -8,22 +8,29 @@ from models.base_model import BaseModel
 from unittest.mock import patch
 from models.engine.file_storage import FileStorage
 import io
+from models.base_model import BaseModel
 from models.user import User
-from models.amenity import Amenity
+from models.state import State
 from models.city import City
+from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from models.state import State
 
 
 class TestFileStorage(unittest.TestCase):
     """test class for file storage"""
     my_model = BaseModel()
 
-    #classes = {
-    #    "BaseModel": BaseModel, "User": User, "State": State "Place": Place
-    #    "City": City "Review": Review "Amenity": Amenity
-    #}
+    def all_classes(self):
+        """Returns a dictionary of valid classes and their references"""
+        all_classes = {"BaseModel": BaseModel,
+                   "User": User,
+                   "State": State,
+                   "City": City,
+                   "Amenity": Amenity,
+                   "Place": Place,
+                   "Review": Review}
+        return all_classes
 
     def test_all(self):
         """test the all method"""
@@ -50,11 +57,15 @@ class TestFileStorage(unittest.TestCase):
         """tests if storage is an instance of FileStorage"""
         self.assertEqual(type(storage).__name__, "FileStorage")
 
-    # def test_new(self):
-    #    """tests the new method"""
-    #    stored_obj = storage.new(TestFileStorage.my_model)
-    #    self.assertIn(stored_obj, storage.all())
-    #    self.assertEqual(TestFileStorage.my_model, storage.all()["BaseModel.{}".format(TestFileStorage.my_model.id)])
+    def test_new(self, classname):
+        """tests the new method"""
+        obj_class = TestFileStorage.all_classes()[classname]
+        obj = obj_class()
+        storage.new(obj)
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        self.assertTrue(key in FileStorage.__objects)
+        self.assertEqual(FileStorage.__objects[key], obj)
+
 
 if __name__ == "__main__":
     unittest.main()
