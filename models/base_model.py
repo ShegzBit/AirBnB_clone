@@ -56,7 +56,7 @@ class BaseModel:
         my_dict = self.__dict__
 
         return f'[{class_name}] ({id}) {my_dict}'
-    
+
     def __repr__(self):
         """
         String representation of BaseModel class

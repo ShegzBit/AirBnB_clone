@@ -21,17 +21,6 @@ class TestFileStorage(unittest.TestCase):
     """test class for file storage"""
     my_model = BaseModel()
 
-    def all_classes(self):
-        """Returns a dictionary of valid classes and their references"""
-        all_classes = {"BaseModel": BaseModel,
-                   "User": User,
-                   "State": State,
-                   "City": City,
-                   "Amenity": Amenity,
-                   "Place": Place,
-                   "Review": Review}
-        return all_classes
-
     def test_all(self):
         """test the all method"""
         all_objs = storage.all()
@@ -56,15 +45,6 @@ class TestFileStorage(unittest.TestCase):
     def test_storage_instance(self):
         """tests if storage is an instance of FileStorage"""
         self.assertEqual(type(storage).__name__, "FileStorage")
-
-    def test_new(self, classname):
-        """tests the new method"""
-        obj_class = TestFileStorage.all_classes()[classname]
-        obj = obj_class()
-        storage.new(obj)
-        key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.assertTrue(key in FileStorage.__objects)
-        self.assertEqual(FileStorage.__objects[key], obj)
 
 
 if __name__ == "__main__":
