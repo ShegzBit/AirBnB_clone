@@ -56,5 +56,17 @@ class TestFileStorage(unittest.TestCase):
     #    self.assertIn(stored_obj, storage.all())
     #    self.assertEqual(TestFileStorage.my_model, storage.all()["BaseModel.{}".format(TestFileStorage.my_model.id)])
 
+    def test_new_method(self):
+        """
+        Tests new method
+        """
+        my_base = BaseModel()
+        my_storage = FileStorage()
+
+        my_storage.new(my_base)
+        my_base_key = 'BaseModel.' + str(my_base.id)
+        self.assertTrue(my_base_key in my_storage.all())
+        self.assertEqual(my_base, my_storage.all[my_base_key])
+
 if __name__ == "__main__":
     unittest.main()
