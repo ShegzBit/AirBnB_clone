@@ -1,3 +1,3 @@
 """
-Package for testing models and object template 
+Package for testing models and object template
 """

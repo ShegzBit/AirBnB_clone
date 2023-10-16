@@ -8,22 +8,12 @@ from models.base_model import BaseModel
 from unittest.mock import patch
 from models.engine.file_storage import FileStorage
 import io
-from models.user import User
-from models.amenity import Amenity
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
+from models.base_model import BaseModel
 
 
 class TestFileStorage(unittest.TestCase):
     """test class for file storage"""
     my_model = BaseModel()
-
-    #classes = {
-    #    "BaseModel": BaseModel, "User": User, "State": State "Place": Place
-    #    "City": City "Review": Review "Amenity": Amenity
-    #}
 
     def test_all(self):
         """test the all method"""
@@ -50,11 +40,22 @@ class TestFileStorage(unittest.TestCase):
         """tests if storage is an instance of FileStorage"""
         self.assertEqual(type(storage).__name__, "FileStorage")
 
-    # def test_new(self):
-    #    """tests the new method"""
-    #    stored_obj = storage.new(TestFileStorage.my_model)
-    #    self.assertIn(stored_obj, storage.all())
-    #    self.assertEqual(TestFileStorage.my_model, storage.all()["BaseModel.{}".format(TestFileStorage.my_model.id)])
+    def test_new(self):
+        """tests the new method to check if it saves an obj to
+        __objects dictionary with the format <classname>.id"""
+        self.assertIn("{}.{}".format("BaseModel", TestFileStorage.my_model.id),
+                      storage._FileStorage__objects)
+
+    def test_reload(self):
+        """tests the reload method"""
+        storage._FileStorage__file_path = "hamida.json"
+        storage.reload()
+
+    def test_attributes(self):
+        """tests attributes present in file storage"""
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
+
 
     def test_new_method(self):
         """
