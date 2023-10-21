@@ -3,5 +3,7 @@ div.container {
     max-width: 1000px;
     margin: 30px auto 30px auto;
     margin-left: 18%;
+    margin-right: 18%;
+    /* transform: translateX(-50%); */
     width: 70%;
 }
