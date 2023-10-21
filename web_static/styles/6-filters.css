@@ -84,3 +84,7 @@ div.amenities:hover ul.amenities-drop {
     display: block;
     padding-inline-start: 20%;
 }
+
+div.pop-sublist {
+    padding-inline-start: 20%;
+}
