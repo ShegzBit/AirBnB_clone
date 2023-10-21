@@ -80,6 +80,7 @@ div.locations:hover ul.locations-drop {
     display: block;
 }
 
-div.amenities:hover ul.amenites-drop {
+div.amenities:hover ul.amenities-drop {
     display: block;
+    padding-inline-start: 20%;
 }
