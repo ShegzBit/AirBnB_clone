@@ -1,8 +1,22 @@
-header {
-    background-color:  #FF0000;
-    height: 70px;
-    width: 100%;
+/* Footer:
+color white
+height: 60px
+width: 100%
+border top 1px #CCCCCC
+text Best School center vertically and horizontally
+always at the bottom at the page */
+
+footer {
+    background-color: #FFFFFF;
     position: absolute;
+    border-top: 1px #CCCCCC solid;
+    bottom: 0;
     left: 0;
-    top: 0;
+    height: 60px;
+    width: 100%;
+    text-align: center;
+}
+
+p.foot-text {
+    padding-top: 10px;
 }

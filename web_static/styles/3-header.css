@@ -1,0 +1,20 @@
+/* Header:
+color: white
+height: 70px
+width: 100%
+border bottom 1px #CCCCCC
+logo align on left and center vertically (20px space at the left) */
+
+header {
+    height: 70px;
+    width: 101%;
+    border-bottom: 1px #CCCC solid;
+    background-color: #FFFFFF;
+    position: relative;
+    left: -7px;
+    background: url('/images/logo.png') no-repeat;
+}
+
+img.logo {
+    margin-left: 20px;
+}
