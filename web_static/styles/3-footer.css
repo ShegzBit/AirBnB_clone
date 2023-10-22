@@ -9,6 +9,7 @@ always at the bottom at the page */
 footer {
     background-color: #FFFFFF;
     border-top: 1px #CCCCCC solid;
+    position: absolute;
     bottom: 0;
     left: 0;
     height: 60px;
