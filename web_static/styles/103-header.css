@@ -1,10 +1,3 @@
-/* Header:
-color: white
-height: 70px
-width: 100%
-border bottom 1px #CCCCCC
-logo align on left and center vertically (20px space at the left) */
-
 header {
     height: 70px;
     width: 101%;
@@ -13,4 +6,10 @@ header {
     position: relative;
     left: -7px;
     background: url('/images/logo.png') no-repeat;
+}
+
+@media screen and (max-width: 1510px) {
+    header {
+        width: 100%;
+    }
 }

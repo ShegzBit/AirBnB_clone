@@ -36,3 +36,7 @@ section.places {
     margin-left: 18%;
     margin-right: 18%;
 }
+
+div.user {
+    text-align: left;
+}

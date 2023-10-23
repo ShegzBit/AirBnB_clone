@@ -65,7 +65,6 @@ h1.price {
 .place-header {
     font-size: 30px;
     color: black;
-    /* display: inline-block; */
     margin-bottom: 90px;
 }
 
@@ -80,4 +79,8 @@ section.places {
 
 footer.footer {
     position: relative;
+}
+
+div.user {
+    text-align: left;
 }
